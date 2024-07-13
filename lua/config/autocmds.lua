@@ -11,6 +11,12 @@ local function set_indentation_settings(filetype_opts)
 end
 
 set_indentation_settings({
+  cpp = {
+    expandtab = false,
+    shiftwidth = 4,
+    tabstop = 4,
+  },
+
   go = {
     expandtab = false,
     shiftwidth = 4,
