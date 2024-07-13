@@ -10,9 +10,17 @@ local function set_indentation_settings(filetype_opts)
   end
 end
 
+-- `expandtab`: true means spaces, false means tabs
+-- `shiftwidth` must be equal to `tabstop`
 set_indentation_settings({
   cpp = {
     expandtab = false,
+    shiftwidth = 4,
+    tabstop = 4,
+  },
+
+  dockerfile = {
+    expandtab = true,
     shiftwidth = 4,
     tabstop = 4,
   },
@@ -30,6 +38,12 @@ set_indentation_settings({
   },
 
   lua = {
+    expandtab = true,
+    shiftwidth = 2,
+    tabstop = 2,
+  },
+
+  make = {
     expandtab = true,
     shiftwidth = 2,
     tabstop = 2,
