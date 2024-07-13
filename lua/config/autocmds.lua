@@ -5,7 +5,7 @@ local function set_indentation_settings(filetype_opts)
     vim.api.nvim_create_autocmd("FileType", {
       group = group,
       pattern = filetype,
-      command = string.format("setlocal %s shiftwidth=%d tabstop=%d", opts.expandtab and "expandtab" or "noexpandtab", opts.shiftwidth, opts.tabstop)
+      command = string.format("setlocal %s shiftwidth=%d tabstop=%d", opts.expandtab and "expandtab" or "noexpandtab", opts.shiftwidth, opts.tabstop),
     })
   end
 end
@@ -24,6 +24,12 @@ set_indentation_settings({
   },
 
   lua = {
+    expandtab = true,
+    shiftwidth = 2,
+    tabstop = 2,
+  },
+
+  markdown = {
     expandtab = true,
     shiftwidth = 2,
     tabstop = 2,
