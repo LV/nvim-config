@@ -15,7 +15,7 @@ end
 set_indentation_settings({
   cmake = {
     expandtab = true,
-    shiftwdith = 4,
+    shiftwidth = 4,
     tabstop = 4,
   },
 
