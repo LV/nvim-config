@@ -69,6 +69,26 @@ return {
         ensure_installed = {},
         handlers = {
           lsp_zero.default_setup,
+          clangd = function()
+            require('lspconfig').clangd.setup({
+              cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--header-insertion=iwyu",
+                "--completion-style=detailed",
+                "--function-arg-placeholders",
+                "--fallback-style=llvm",
+                "--compile-commands-dir=build"  -- Adjust this path if needed
+              },
+              init_options = {
+                clangdFileStatus = true,
+                usePlaceholders = true,
+                completeUnimported = true,
+                semanticHighlighting = true,
+              },
+            })
+          end,
           lua_ls = function()
             -- (Optional) Configure lua language server for neovim
             local lua_opts = lsp_zero.nvim_lua_ls()
