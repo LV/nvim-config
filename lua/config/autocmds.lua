@@ -20,7 +20,7 @@ set_indentation_settings({
   },
 
   cpp = {
-    expandtab = false,
+    expandtab = true,
     shiftwidth = 4,
     tabstop = 4,
   },
