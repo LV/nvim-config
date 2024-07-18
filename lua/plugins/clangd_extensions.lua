@@ -11,6 +11,7 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
+      local wk = require("which-key")
       local on_attach = function(client, bufnr)
         -- Mappings
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -24,6 +25,20 @@ return {
         buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
         buf_set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.references()<CR>", vim.tbl_extend("force", opts, { desc = "Find references" }))
         buf_set_keymap("n", "<leader>cR", "<cmd>lua vim.lsp.buf.rename()<CR>", vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+
+        -- Register with which-key
+        wk.register({
+          ["<leader>c"] = {
+            name = "+code",
+            a = "Code action",
+            c = "Show code context",
+            d = "Go to definition",
+            D = "Go to declaration",
+            i = "Go to implementation",
+            r = "Find references",
+            R = "Rename symbol",
+          },
+        }, { buffer = bufnr })
 
         -- Set up clangd_extensions
         require("clangd_extensions.inlay_hints").setup_autocmd()
