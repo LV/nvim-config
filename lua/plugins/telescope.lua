@@ -32,9 +32,11 @@ local config = function()
       },
     },
     extensions = {
+      "file_browser",
       "fzf",
     },
   })
+  telescope.load_extension("file_browser")
   telescope.load_extension("fzf")
 end
 
