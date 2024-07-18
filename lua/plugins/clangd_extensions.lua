@@ -9,7 +9,7 @@ return {
       "BufReadPre",
       "BufNewFile",
     },
-    config = function ()
+    config = function()
       local lspconfig = require("lspconfig")
       local on_attach = function(client, bufnr)
         -- Mappings
@@ -45,5 +45,5 @@ return {
         },
       })
     end,
-  }
+  },
 }
