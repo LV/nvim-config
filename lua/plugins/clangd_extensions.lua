@@ -21,7 +21,7 @@ return {
         buf_set_keymap("n", "<leader>cc", "<cmd>lua vim.lsp.buf.hover()<CR>", vim.tbl_extend("force", opts, { desc = "Show code context" }))
         buf_set_keymap("n", "<leader>cd", "<cmd>lua vim.lsp.buf.definition()<CR>", vim.tbl_extend("force", opts, { desc = "Go to definition" }))
         buf_set_keymap("n", "<leader>cD", "<cmd>lua vim.lsp.buf.declaration()<CR>", vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
-        buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", vim.tbl_extend("force", opts, { desc = "Code action" }))
+        buf_set_keymap("n", "<leader>ci", "<cmd>lua vim.lsp.buf.implementation()<CR>", vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
         buf_set_keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.references()<CR>", vim.tbl_extend("force", opts, { desc = "Find references" }))
         buf_set_keymap("n", "<leader>cR", "<cmd>lua vim.lsp.buf.rename()<CR>", vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
 
