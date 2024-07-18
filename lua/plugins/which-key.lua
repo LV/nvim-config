@@ -11,12 +11,19 @@ return {
       -- group prefix names
       ["<leader>c"] = { name = "+code" },
       ["<leader>g"] = { name = "+git" },
+      ["<leader>t"] = { name = "+template",
+                        c = { name = "+cpp" },
+                      },
       ["<leader>w"] = { name = "+windows" },
     },
   },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    wk.register(opts.defaults)
+    wk.register({
+      -- templates
+      ["<leader>tch"] = { ":Template cpp/header<CR>", "Load C++ header template" },
+      ["<leader>tcs"] = { ":Template cpp/source<CR>", "Load C++ source template" },
+    }, opts.defaults)
   end,
 }
