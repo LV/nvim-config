@@ -1,10 +1,18 @@
 /**
  * @file {{_file_name_}}.hpp
- * @brief Brief description of the file's contents
+ * @brief Header for the ClassName class {representing/handling/implementing} [continue description]
  * @author {{_author_}}
  * @date {{_date_}}
  *
- * Detailed description of the file (if necessary).
+ * This file contains the declaration of the ClassName class, which [provide a more detailed
+ * description of the class's purpose and functionality]. It includes [list key components,
+ * e.g., member functions, important member variables].
+ *
+ * Example usage:
+ * @code
+ * ClassName obj;
+ * obj.someFunction();
+ * @endcode
  */
 
 #ifndef {{_upper_file_}}_HPP
@@ -15,7 +23,10 @@
 
 /**
  * @class ClassName
- * @brief Brief description of the class
+ * @brief [Concise description of what the class represents or does]
+ *
+ * [More detailed explanation of the class's purpose, its key features,
+ * and any important design patterns or principles it follows]
  */
 class ClassName {
 public:
@@ -29,6 +40,6 @@ private:
     // Private member functions
 };
 
-{{_cursor_}}
+// Write your code here
 
 #endif // {{_upper_file_}}_HPP
