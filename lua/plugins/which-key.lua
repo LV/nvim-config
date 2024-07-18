@@ -8,6 +8,7 @@ return {
   end,
   opts = {
     defaults = {
+      -- group prefix names
       ["<leader>c"] = { name = "+code" },
       ["<leader>g"] = { name = "+git" },
       ["<leader>w"] = { name = "+windows" },
