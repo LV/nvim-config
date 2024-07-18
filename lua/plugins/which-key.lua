@@ -17,6 +17,8 @@ return {
       { "<leader>f", group = "file" },
       { "<leader>g", group = "git" },
 
+      { "<leader>l", "<cmd>Lazy<CR>", desc = "Open LazyVim" },
+
       -- Template
       { "<leader>t", group = "template" },
       { "<leader>tc", group = "cpp" },
