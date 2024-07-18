@@ -6,8 +6,8 @@
  *
  * This file contains the implementation of the ClassName class, which [brief description
  * of the class's purpose]. It provides the functionality for [list key features or operations].
- * 
- * The implementation includes [mention any significant algorithms, data structures, 
+ *
+ * The implementation includes [mention any significant algorithms, data structures,
  * or design patterns used in the implementation].
  */
 
