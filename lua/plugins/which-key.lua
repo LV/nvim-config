@@ -10,6 +10,7 @@ return {
     defaults = {
       -- group prefix names
       ["<leader>c"] = { name = "+code" },
+      ["<leader>f"] = { name = "+file" },
       ["<leader>g"] = { name = "+git" },
       ["<leader>t"] = { name = "+template",
                         c = { name = "+cpp" },
@@ -31,6 +32,9 @@ return {
       ["<leader>ci"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
       ["<leader>cr"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Find references" },
       ["<leader>cR"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
+
+      -- Telescope
+      ["<leader>fb"] = { ":Telescope file_browser<CR>", "File Browser" },
 
       -- Templates
       ["<leader>tch"] = { ":Template cpp/header<CR>", "Load C++ header template" },
