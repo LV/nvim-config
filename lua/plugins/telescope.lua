@@ -1,5 +1,6 @@
 local keys = {
-  { "<leader>.", "<cmd>Telescope find_files<cr>", desc = "Find All Files" },
+  { "<leader>.", "<cmd>Telescope find_files<CR>", desc = "Find All Files" },
+  { "<leader>fb","<cmd>Telescope file_browser<CR>", desc = "File Browser" },
 }
 
 local config = function()

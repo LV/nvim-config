@@ -5,6 +5,7 @@
   "lazygit.nvim": { "branch": "main", "commit": "dc56df433bfbf107fee0139e187eb9750878fa84" },
   "lualine.nvim": { "branch": "master", "commit": "544dd1583f9bb27b393f598475c89809c4d5e86b" },
   "lush.nvim": { "branch": "main", "commit": "1b66ab197b177aabc2270a2c9cb8019fa5a367df" },
+  "mini.nvim": { "branch": "main", "commit": "f20d8cd3a116ef65f022797de064a044b217ff53" },
   "neoconf.nvim": { "branch": "main", "commit": "9c9a02271a7ee2564a565a0459d5d6265fa63ade" },
   "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
   "nvim-lspconfig": { "branch": "master", "commit": "01e08d4bf1c35e5126b2ad5209725e4c552289ab" },
