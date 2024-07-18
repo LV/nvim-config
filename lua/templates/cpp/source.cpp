@@ -1,6 +1,6 @@
 /**
  * @file {{_file_name_}}.cpp
- * @brief Implementation of the {{_file_name_}} class and blah blah blah
+ * @brief Implementation of the ClassName class and blah blah blah
  * @author {{_author_}}
  * @date {{_date_}}
  *
