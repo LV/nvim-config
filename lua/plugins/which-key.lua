@@ -21,9 +21,20 @@ return {
     local wk = require("which-key")
     wk.setup(opts)
     wk.register({
-      -- templates
+      opts.defaults,
+      -- LSP
+        -- Clangd
+      ["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action" },
+      ["<leader>cc"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show code context" },
+      ["<leader>cd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
+      ["<leader>cD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
+      ["<leader>ci"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to implementation" },
+      ["<leader>cr"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Find references" },
+      ["<leader>cR"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol" },
+
+      -- Templates
       ["<leader>tch"] = { ":Template cpp/header<CR>", "Load C++ header template" },
       ["<leader>tcs"] = { ":Template cpp/source<CR>", "Load C++ source template" },
-    }, opts.defaults)
+    })
   end,
 }
