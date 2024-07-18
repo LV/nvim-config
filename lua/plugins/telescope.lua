@@ -1,6 +1,6 @@
 local keys = {
   { "<leader>.", "<cmd>Telescope find_files<CR>", desc = "Find All Files" },
-  { "<leader>e","<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "File Explorer" },
+  { "<leader>fe","<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "File Explorer" },
 }
 
 local config = function()
