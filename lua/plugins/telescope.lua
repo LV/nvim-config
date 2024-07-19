@@ -10,6 +10,7 @@ local ignore_patterns = {
   "_deps",
   ".DS_Store",
   ".git",
+  "linux-gcc-x86",
   "node_modules",
   ".venv"
 }
