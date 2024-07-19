@@ -8,6 +8,7 @@ local ignore_patterns = {
   ".cache",
   "CMakeFiles",
   "_deps",
+  ".DS_Store",
   ".git",
   "node_modules",
   ".venv"
