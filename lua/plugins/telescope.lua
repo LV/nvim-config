@@ -3,6 +3,16 @@ local keys = {
   { "<leader>fe","<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "File Explorer" },
 }
 
+local ignore_patterns = {
+  "build",
+  ".cache",
+  "CMakeFiles",
+  "_deps",
+  ".git",
+  "node_modules",
+  ".venv"
+}
+
 local config = function()
   local telescope = require("telescope")
   telescope.setup({
@@ -16,7 +26,7 @@ local config = function()
     },
     pickers = {
       live_grep = {
-        file_ignore_patterns = { "node_modules", ".venv" },
+        file_ignore_patterns = ignore_patterns,
         additionalargs = function(_)
           return { "--hidden", "--no-ignore-vcs" }
         end,
@@ -24,7 +34,7 @@ local config = function()
         no_ignore = true,
       },
       find_files = {
-        file_ignore_patterns = { "node_modules", ".venv" },
+        file_ignore_patterns = ignore_patterns,
         additionalargs = function(_)
           return { "--hidden", "--no-ignore-vcs" }
         end,
