@@ -1,6 +1,7 @@
 {
   "bluloco.nvim": { "branch": "main", "commit": "07f4b5cca8cfe31aad69ab5c1be0f6a0715a8d2e" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "a8500531c4ed3a207e744a374ea038744a0f93eb" },
+  "copilot.lua": { "branch": "master", "commit": "86537b286f18783f8b67bccd78a4ef4345679625" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "lazy.nvim": { "branch": "main", "commit": "c92c6b5fd2b3a13c8999ab8379e43a79c9406e59" },
   "lazygit.nvim": { "branch": "main", "commit": "dc56df433bfbf107fee0139e187eb9750878fa84" },
@@ -9,7 +10,7 @@
   "mini.nvim": { "branch": "main", "commit": "db52ea9a1fd5183bb15f557db3fd6e504099bf06" },
   "neoconf.nvim": { "branch": "main", "commit": "019fc6693d0d9f42680954208a7c819c44bf81d2" },
   "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
-  "nvim-lspconfig": { "branch": "master", "commit": "df9c116cbcf0aa7e58f2b36b0296fa687e87f36f" },
+  "nvim-lspconfig": { "branch": "master", "commit": "e26da408cf955afa8e9ddbadd510e84ea8976cd7" },
   "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856" },
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
