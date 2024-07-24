@@ -47,7 +47,7 @@ return {
     { "<leader>fk", desc = "Harpoon select 2" },
     { "<leader>fl", desc = "Harpoon select 3" },
     { "<leader>f;", desc = "Harpoon select 4" },
-    { "<leader>fq", desc = "Harpoon prev" },
-    { "<leader>fe", desc = "Harpoon next" },
+    { "<leader>fi", desc = "Harpoon prev" },
+    { "<leader>fo", desc = "Harpoon next" },
   },
 }
