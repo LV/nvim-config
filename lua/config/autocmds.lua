@@ -50,9 +50,9 @@ set_indentation_settings({
   },
 
   make = {
-    expandtab = true,
-    shiftwidth = 2,
-    tabstop = 2,
+    expandtab = false,
+    shiftwidth = 4,
+    tabstop = 4,
   },
 
   markdown = {
