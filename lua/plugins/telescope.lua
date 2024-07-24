@@ -1,5 +1,6 @@
 local keys = {
   { "<leader>.", "<cmd>Telescope find_files<CR>", desc = "Find All Files" },
+  { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
   { "<leader>fe","<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "File Explorer" },
 }
 
