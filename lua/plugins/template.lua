@@ -1,5 +1,5 @@
 return {
-  "glepnir/template.nvim",
+  "nvimdev/template.nvim",
   cmd = { "Template", "TemProject" },
   config = function()
     require('template').setup({
@@ -9,3 +9,13 @@ return {
     })
   end
 }
+
+-- Template grammar
+-- `{{_date_}}` insert current date
+-- `{{_cursor_}}` set cursor here
+-- `{{_file_name_}}` current file name
+-- `{{_author_}}` author info
+-- `{{_email_}}` email address
+-- `{{_variable_}}` variable name
+-- `{{_upper_file_}}` all-caps file name
+-- `{{_lua:vim.fn.expand(%:.:r)_}}` set by lua script
