@@ -13,6 +13,12 @@ end
 -- `expandtab`: true means spaces, false means tabs
 -- `shiftwidth` must be equal to `tabstop`
 set_indentation_settings({
+  c = {
+    expandtab = true,
+    shiftwidth = 4,
+    tabstop = 4,
+  },
+
   cmake = {
     expandtab = true,
     shiftwidth = 4,
