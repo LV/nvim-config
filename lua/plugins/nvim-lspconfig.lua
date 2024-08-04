@@ -1,3 +1,5 @@
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
 local on_attach = require("util.lsp").on_attach
 local diagnostic_signs = require("util.icons").diagnostic_signs
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
