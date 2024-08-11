@@ -24,6 +24,7 @@ return {
       { "<leader>tc", group = "cpp" },
       { "<leader>tch", "<cmd>Template cpp/header<CR>", desc = "Load C++ header template" },
       { "<leader>tcs", "<cmd>Template cpp/source()<CR>", desc = "Load C++ source template" },
+      { "<leader>tcp", "<cmd>Template cpp/competitive_programming()<CR>", desc = "Load C++ competitive programming template" },
 
       { "<leader>w", group = "window" },
     },
