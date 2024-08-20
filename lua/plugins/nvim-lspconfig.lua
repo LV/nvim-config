@@ -2,36 +2,38 @@
 local M = {}
 
 M.config = function()
-	require("neoconf").setup({})
-	local cmp_nvim_lsp = require("cmp_nvim_lsp")
-	local lspconfig = require("lspconfig")
+	local function lazy_require(module)
+		return setmetatable({}, {
+			__index = function(_, key)
+				return require(module)[key]
+			end,
+		})
+	end
+
+	local lspconfig = lazy_require("lspconfig")
+	local cmp_nvim_lsp = lazy_require("cmp_nvim_lsp")
+	local util = {
+		lsp = lazy_require("util.lsp"),
+		icons = lazy_require("util.icons"),
+	}
+
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
-	local on_attach = require("util.lsp").on_attach
-	local diagnostic_signs = require("util.icons").diagnostic_signs
-	local typescript_organise_imports = require("util.lsp").typescript_organise_imports
-
 	-- Set up diagnostic signs
-	for type, icon in pairs(diagnostic_signs) do
+	for type, icon in pairs(util.icons.diagnostic_signs) do
 		local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 	end
 
 	-- Lazy-load LSP configurations
 	local server_configs = {
-		bashls = {
-			filetypes = { "sh", "aliasrc" },
-		},
+		bashls = { filetypes = { "sh", "aliasrc" } },
 		clangd = {
 			filetypes = { "c", "cpp" },
 			cmd = { "clangd", "--offset-encoding=utf-16" },
 		},
-		dockerls = {
-			filetypes = { "dockerfile" },
-		},
-		jsonls = {
-			filetypes = { "json", "jsonc" },
-		},
+		dockerls = { filetypes = { "dockerfile" } },
+		jsonls = { filetypes = { "json", "jsonc" } },
 		lua_ls = {
 			filetypes = { "lua" },
 			settings = {
@@ -62,7 +64,9 @@ M.config = function()
 		},
 		tsserver = {
 			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-			commands = { TypeScriptOrganizeImports = typescript_organise_imports },
+			commands = {
+				TypeScriptOrganizeImports = util.lsp.typescript_organise_imports,
+			},
 			settings = { typescript = { indentStyle = "space", indentSize = 2 } },
 			root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
 		},
@@ -78,7 +82,7 @@ M.config = function()
 	local function setup_server(server_name)
 		local config = vim.tbl_deep_extend("force", {
 			capabilities = capabilities,
-			on_attach = on_attach,
+			on_attach = util.lsp.on_attach,
 		}, server_configs[server_name] or {})
 		lspconfig[server_name].setup(config)
 	end
@@ -105,37 +109,34 @@ M.config = function()
 	}
 
 	local function setup_efm()
-		local prettier_d = require("efmls-configs.formatters.prettier_d")
-		local luacheck = require("efmls-configs.linters.luacheck")
-		local stylua = require("efmls-configs.formatters.stylua")
-		local flake8 = require("efmls-configs.linters.flake8")
-		local black = require("efmls-configs.formatters.black")
-		local eslint = require("efmls-configs.linters.eslint")
-		local fixjson = require("efmls-configs.formatters.fixjson")
-		local shellcheck = require("efmls-configs.linters.shellcheck")
-		local shfmt = require("efmls-configs.formatters.shfmt")
-		local hadolint = require("efmls-configs.linters.hadolint")
-		local cpplint = require("efmls-configs.linters.cpplint")
-		local clangformat = require("efmls-configs.formatters.clang_format")
+		local function load_efm_config(type, name)
+			local ok, config = pcall(require, string.format("efmls-configs.%s.%s", type, name))
+			if ok then
+				return config
+			else
+				vim.notify(string.format("Failed to load %s %s", type, name), vim.log.levels.WARN)
+				return {}
+			end
+		end
 
 		efm_languages = {
-			lua = { luacheck, stylua },
-			python = { flake8, black },
-			typescript = { eslint, prettier_d },
-			json = { eslint, fixjson },
-			jsonc = { eslint, fixjson },
-			sh = { shellcheck, shfmt },
-			javascript = { eslint, prettier_d },
-			javascriptreact = { eslint, prettier_d },
-			typescriptreact = { eslint, prettier_d },
-			svelte = { eslint, prettier_d },
-			vue = { eslint, prettier_d },
-			markdown = { prettier_d },
-			docker = { hadolint, prettier_d },
-			html = { prettier_d },
-			css = { prettier_d },
-			c = { clangformat, cpplint },
-			cpp = { clangformat, cpplint },
+			lua = { load_efm_config("linters", "luacheck"), load_efm_config("formatters", "stylua") },
+			python = { load_efm_config("linters", "flake8"), load_efm_config("formatters", "black") },
+			typescript = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
+			json = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "fixjson") },
+			jsonc = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "fixjson") },
+			sh = { load_efm_config("linters", "shellcheck"), load_efm_config("formatters", "shfmt") },
+			javascript = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
+			javascriptreact = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
+			typescriptreact = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
+			svelte = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
+			vue = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
+			markdown = { load_efm_config("formatters", "prettier_d") },
+			docker = { load_efm_config("linters", "hadolint"), load_efm_config("formatters", "prettier_d") },
+			html = { load_efm_config("formatters", "prettier_d") },
+			css = { load_efm_config("formatters", "prettier_d") },
+			c = { load_efm_config("formatters", "clang_format"), load_efm_config("linters", "cpplint") },
+			cpp = { load_efm_config("formatters", "clang_format"), load_efm_config("linters", "cpplint") },
 		}
 
 		lspconfig.efm.setup({
@@ -166,15 +167,16 @@ M.config = function()
 	})
 end
 
+-- Lazy-load the entire LSP setup
 return {
 	"neovim/nvim-lspconfig",
+	event = { "BufReadPre", "BufNewFile" },
 	config = M.config,
-	lazy = false,
 	dependencies = {
-		"windwp/nvim-autopairs",
+		{ "windwp/nvim-autopairs", event = "InsertEnter" },
 		"williamboman/mason.nvim",
 		"creativenull/efmls-configs-nvim",
-		"hrsh7th/nvim-cmp",
+		{ "hrsh7th/nvim-cmp", event = "InsertEnter" },
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-nvim-lsp",
 	},
