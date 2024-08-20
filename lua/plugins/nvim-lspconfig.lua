@@ -1,128 +1,97 @@
 -- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+local M = {}
 
-local on_attach = require("util.lsp").on_attach
-local diagnostic_signs = require("util.icons").diagnostic_signs
-local typescript_organise_imports = require("util.lsp").typescript_organise_imports
-
-local config = function()
+M.config = function()
 	require("neoconf").setup({})
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
-	-- bash
-	lspconfig.bashls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = { "sh", "aliasrc" },
-	})
+	local on_attach = require("util.lsp").on_attach
+	local diagnostic_signs = require("util.icons").diagnostic_signs
+	local typescript_organise_imports = require("util.lsp").typescript_organise_imports
 
-	-- C/C++
-	lspconfig.clangd.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		cmd = {
-			"clangd",
-			"--offset-encoding=utf-16",
-		},
-	})
-
-	-- docker
-	lspconfig.dockerls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-
-	-- json
-	lspconfig.jsonls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = { "json", "jsonc" },
-	})
-
-	-- lua
-	lspconfig.lua_ls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		settings = { -- custom settings for lua
-			Lua = {
-				-- make the language server recognize "vim" global
-				diagnostics = {
-					globals = { "vim" },
-				},
-				workspace = {
-					library = {
-						vim.fn.expand("$VIMRUNTIME/lua"),
-						vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
-					},
-				},
-			},
-		},
-	})
-
-	-- python
-	lspconfig.pyright.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		settings = {
-			pyright = {
-				disableOrganizeImports = false,
-				analysis = {
-					useLibraryCodeForTypes = true,
-					autoSearchPaths = true,
-					diagnosticMode = "workspace",
-					autoImportCompletions = true,
-				},
-			},
-		},
-	})
-
-	-- typescript
-	lspconfig.tsserver.setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		filetypes = {
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-		},
-		commands = {
-			TypeScriptOrganizeImports = typescript_organise_imports,
-		},
-		settings = {
-			typescript = {
-				indentStyle = "space",
-				indentSize = 2,
-			},
-		},
-		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
-	})
-
-
-	-- typescriptreact, javascriptreact, css, sass, scss, less, svelte, vue
-	lspconfig.emmet_ls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = {
-			"javascriptreact",
-			"typescriptreact",
-			"javascript",
-			"css",
-			"sass",
-			"scss",
-			"less",
-			"svelte",
-			"vue",
-			"html",
-		},
-	})
-
+	-- Set up diagnostic signs
 	for type, icon in pairs(diagnostic_signs) do
 		local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 	end
 
+	-- Lazy-load LSP configurations
+	local server_configs = {
+		bashls = {
+			filetypes = { "sh", "aliasrc" },
+		},
+		clangd = {
+			cmd = { "clangd", "--offset-encoding=utf-16" },
+		},
+		dockerls = {},
+		jsonls = {
+			filetypes = { "json", "jsonc" },
+		},
+		lua_ls = {
+			settings = {
+				Lua = {
+					diagnostics = { globals = { "vim" } },
+					workspace = {
+						library = {
+							vim.fn.expand("$VIMRUNTIME/lua"),
+							vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+						},
+					},
+				},
+			},
+		},
+		pyright = {
+			settings = {
+				pyright = {
+					disableOrganizeImports = false,
+					analysis = {
+						useLibraryCodeForTypes = true,
+						autoSearchPaths = true,
+						diagnosticMode = "workspace",
+						autoImportCompletions = true,
+					},
+				},
+			},
+		},
+		tsserver = {
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+			commands = { TypeScriptOrganizeImports = typescript_organise_imports },
+			settings = { typescript = { indentStyle = "space", indentSize = 2 } },
+			root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
+		},
+		emmet_ls = {
+			filetypes = {
+				"javascriptreact", "typescriptreact", "javascript", "css", "sass",
+				"scss", "less", "svelte", "vue", "html",
+			},
+		},
+	}
+
+	-- Function to set up a server
+	local function setup_server(server_name)
+		local config = vim.tbl_deep_extend("force", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		}, server_configs[server_name] or {})
+		lspconfig[server_name].setup(config)
+	end
+
+	-- Set up servers lazily
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = vim.tbl_keys(server_configs),
+		callback = function()
+			local ft = vim.bo.filetype
+			for server, config in pairs(server_configs) do
+				if vim.tbl_contains(config.filetypes or {ft}, ft) then
+					setup_server(server)
+				end
+			end
+		end,
+	})
+
+	-- Set up efm server (kept as is since it covers multiple filetypes)
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
@@ -131,31 +100,16 @@ local config = function()
 	local eslint = require("efmls-configs.linters.eslint")
 	local fixjson = require("efmls-configs.formatters.fixjson")
 	local shellcheck = require("efmls-configs.linters.shellcheck")
-	local shfmt = require("efmls-configs.formatters.shfmt") -- bash
-	local hadolint = require("efmls-configs.linters.hadolint") -- docker
+	local shfmt = require("efmls-configs.formatters.shfmt")
+	local hadolint = require("efmls-configs.linters.hadolint")
 	local cpplint = require("efmls-configs.linters.cpplint")
 	local clangformat = require("efmls-configs.formatters.clang_format")
 
-	-- configure efm server
 	lspconfig.efm.setup({
 		filetypes = {
-			"c",
-			"cpp",
-			"lua",
-			"python",
-			"json",
-			"jsonc",
-			"sh",
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"svelte",
-			"vue",
-			"markdown",
-			"docker",
-			"html",
-			"css",
+			"c", "cpp", "lua", "python", "json", "jsonc", "sh", "javascript",
+			"javascriptreact", "typescript", "typescriptreact", "svelte", "vue",
+			"markdown", "docker", "html", "css",
 		},
 		init_options = {
 			documentFormatting = true,
@@ -167,7 +121,6 @@ local config = function()
 		},
 		settings = {
 			languages = {
-				solidity = { solhint, prettier_d },
 				lua = { luacheck, stylua },
 				python = { flake8, black },
 				typescript = { eslint, prettier_d },
@@ -192,7 +145,7 @@ end
 
 return {
 	"neovim/nvim-lspconfig",
-	config = config,
+	config = M.config,
 	lazy = false,
 	dependencies = {
 		"windwp/nvim-autopairs",
