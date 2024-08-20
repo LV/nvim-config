@@ -17,6 +17,8 @@ return {
       { "<leader>f", group = "file" },
       { "<leader>g", group = "git" },
 
+      { "<leader>h", "<cmd>HopWord<CR>", desc = "Open NVim Packages (LazyVim)" },
+
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
 
       -- Template
