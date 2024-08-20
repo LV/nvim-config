@@ -103,41 +103,48 @@ M.config = function()
 	-- Lazy-load EFM server configuration
 	local efm_languages = {}
 	local efm_filetypes = {
-		"c", "cpp", "lua", "python", "json", "jsonc", "sh", "javascript",
-		"javascriptreact", "typescript", "typescriptreact", "svelte", "vue",
-		"markdown", "docker", "html", "css",
+		"lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact",
+		"json", "jsonc", "sh", "markdown", "yaml", "css", "html", "c", "cpp",
 	}
 
-	local function setup_efm()
-		local function load_efm_config(type, name)
-			local ok, config = pcall(require, string.format("efmls-configs.%s.%s", type, name))
-			if ok then
-				return config
-			else
-				vim.notify(string.format("Failed to load %s %s", type, name), vim.log.levels.WARN)
-				return {}
+	local efm_config_loaded = false
+
+	local function load_efm_config(ft)
+		if efm_languages[ft] then return end
+
+		local configs = {
+			lua = { "luacheck", "stylua" },
+			python = { "flake8", "black" },
+			javascript = { "eslint", "prettier_d" },
+			typescript = { "eslint", "prettier_d" },
+			javascriptreact = { "eslint", "prettier_d" },
+			typescriptreact = { "eslint", "prettier_d" },
+			json = { "eslint", "fixjson" },
+			jsonc = { "eslint", "fixjson" },
+			sh = { "shellcheck", "shfmt" },
+			markdown = { "prettier_d" },
+			yaml = { "yamllint" },
+			css = { "prettier_d" },
+			html = { "prettier_d" },
+			c = { "clang_format", "cpplint" },
+			cpp = { "clang_format", "cpplint" },
+		}
+
+		if configs[ft] then
+			efm_languages[ft] = {}
+			for _, tool in ipairs(configs[ft]) do
+				local ok, config = pcall(require, "efmls-configs." .. (tool:match("^%a+") == "efmls" and "linters" or "formatters") .. "." .. tool)
+				if ok then
+					table.insert(efm_languages[ft], config)
+				else
+					vim.notify("Failed to load " .. tool .. " for filetype " .. ft, vim.log.levels.WARN)
+				end
 			end
 		end
+	end
 
-		efm_languages = {
-			lua = { load_efm_config("linters", "luacheck"), load_efm_config("formatters", "stylua") },
-			python = { load_efm_config("linters", "flake8"), load_efm_config("formatters", "black") },
-			typescript = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
-			json = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "fixjson") },
-			jsonc = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "fixjson") },
-			sh = { load_efm_config("linters", "shellcheck"), load_efm_config("formatters", "shfmt") },
-			javascript = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
-			javascriptreact = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
-			typescriptreact = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
-			svelte = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
-			vue = { load_efm_config("linters", "eslint"), load_efm_config("formatters", "prettier_d") },
-			markdown = { load_efm_config("formatters", "prettier_d") },
-			docker = { load_efm_config("linters", "hadolint"), load_efm_config("formatters", "prettier_d") },
-			html = { load_efm_config("formatters", "prettier_d") },
-			css = { load_efm_config("formatters", "prettier_d") },
-			c = { load_efm_config("formatters", "clang_format"), load_efm_config("linters", "cpplint") },
-			cpp = { load_efm_config("formatters", "clang_format"), load_efm_config("linters", "cpplint") },
-		}
+	local function setup_efm()
+		if efm_config_loaded then return end
 
 		lspconfig.efm.setup({
 			filetypes = efm_filetypes,
@@ -153,17 +160,18 @@ M.config = function()
 				languages = efm_languages,
 			},
 		})
+
+		efm_config_loaded = true
 	end
 
 	-- Set up EFM server lazily
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = efm_filetypes,
 		callback = function()
-			if not efm_languages[vim.bo.filetype] then
-				setup_efm()
-			end
+			local ft = vim.bo.filetype
+			load_efm_config(ft)
+			setup_efm()
 		end,
-		once = true,
 	})
 end
 
