@@ -23,13 +23,17 @@ M.config = function()
 			filetypes = { "sh", "aliasrc" },
 		},
 		clangd = {
+			filetypes = { "c", "cpp" },
 			cmd = { "clangd", "--offset-encoding=utf-16" },
 		},
-		dockerls = {},
+		dockerls = {
+			filetypes = { "dockerfile" },
+		},
 		jsonls = {
 			filetypes = { "json", "jsonc" },
 		},
 		lua_ls = {
+			filetypes = { "lua" },
 			settings = {
 				Lua = {
 					diagnostics = { globals = { "vim" } },
@@ -43,6 +47,7 @@ M.config = function()
 			},
 		},
 		pyright = {
+			filetypes = { "python" },
 			settings = {
 				pyright = {
 					disableOrganizeImports = false,
@@ -91,55 +96,73 @@ M.config = function()
 		end,
 	})
 
-	-- Set up efm server (kept as is since it covers multiple filetypes)
-	local prettier_d = require("efmls-configs.formatters.prettier_d")
-	local luacheck = require("efmls-configs.linters.luacheck")
-	local stylua = require("efmls-configs.formatters.stylua")
-	local flake8 = require("efmls-configs.linters.flake8")
-	local black = require("efmls-configs.formatters.black")
-	local eslint = require("efmls-configs.linters.eslint")
-	local fixjson = require("efmls-configs.formatters.fixjson")
-	local shellcheck = require("efmls-configs.linters.shellcheck")
-	local shfmt = require("efmls-configs.formatters.shfmt")
-	local hadolint = require("efmls-configs.linters.hadolint")
-	local cpplint = require("efmls-configs.linters.cpplint")
-	local clangformat = require("efmls-configs.formatters.clang_format")
+	-- Lazy-load EFM server configuration
+	local efm_languages = {}
+	local efm_filetypes = {
+		"c", "cpp", "lua", "python", "json", "jsonc", "sh", "javascript",
+		"javascriptreact", "typescript", "typescriptreact", "svelte", "vue",
+		"markdown", "docker", "html", "css",
+	}
 
-	lspconfig.efm.setup({
-		filetypes = {
-			"c", "cpp", "lua", "python", "json", "jsonc", "sh", "javascript",
-			"javascriptreact", "typescript", "typescriptreact", "svelte", "vue",
-			"markdown", "docker", "html", "css",
-		},
-		init_options = {
-			documentFormatting = true,
-			documentRangeFormatting = true,
-			hover = true,
-			documentSymbol = true,
-			codeAction = true,
-			completion = true,
-		},
-		settings = {
-			languages = {
-				lua = { luacheck, stylua },
-				python = { flake8, black },
-				typescript = { eslint, prettier_d },
-				json = { eslint, fixjson },
-				jsonc = { eslint, fixjson },
-				sh = { shellcheck, shfmt },
-				javascript = { eslint, prettier_d },
-				javascriptreact = { eslint, prettier_d },
-				typescriptreact = { eslint, prettier_d },
-				svelte = { eslint, prettier_d },
-				vue = { eslint, prettier_d },
-				markdown = { prettier_d },
-				docker = { hadolint, prettier_d },
-				html = { prettier_d },
-				css = { prettier_d },
-				c = { clangformat, cpplint },
-				cpp = { clangformat, cpplint },
+	local function setup_efm()
+		local prettier_d = require("efmls-configs.formatters.prettier_d")
+		local luacheck = require("efmls-configs.linters.luacheck")
+		local stylua = require("efmls-configs.formatters.stylua")
+		local flake8 = require("efmls-configs.linters.flake8")
+		local black = require("efmls-configs.formatters.black")
+		local eslint = require("efmls-configs.linters.eslint")
+		local fixjson = require("efmls-configs.formatters.fixjson")
+		local shellcheck = require("efmls-configs.linters.shellcheck")
+		local shfmt = require("efmls-configs.formatters.shfmt")
+		local hadolint = require("efmls-configs.linters.hadolint")
+		local cpplint = require("efmls-configs.linters.cpplint")
+		local clangformat = require("efmls-configs.formatters.clang_format")
+
+		efm_languages = {
+			lua = { luacheck, stylua },
+			python = { flake8, black },
+			typescript = { eslint, prettier_d },
+			json = { eslint, fixjson },
+			jsonc = { eslint, fixjson },
+			sh = { shellcheck, shfmt },
+			javascript = { eslint, prettier_d },
+			javascriptreact = { eslint, prettier_d },
+			typescriptreact = { eslint, prettier_d },
+			svelte = { eslint, prettier_d },
+			vue = { eslint, prettier_d },
+			markdown = { prettier_d },
+			docker = { hadolint, prettier_d },
+			html = { prettier_d },
+			css = { prettier_d },
+			c = { clangformat, cpplint },
+			cpp = { clangformat, cpplint },
+		}
+
+		lspconfig.efm.setup({
+			filetypes = efm_filetypes,
+			init_options = {
+				documentFormatting = true,
+				documentRangeFormatting = true,
+				hover = true,
+				documentSymbol = true,
+				codeAction = true,
+				completion = true,
 			},
-		},
+			settings = {
+				languages = efm_languages,
+			},
+		})
+	end
+
+	-- Set up EFM server lazily
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = efm_filetypes,
+		callback = function()
+			if not efm_languages[vim.bo.filetype] then
+				setup_efm()
+			end
+		end,
+		once = true,
 	})
 end
 
