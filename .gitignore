@@ -40,3 +40,6 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+
+# Neovim
+lazy-lock.json
