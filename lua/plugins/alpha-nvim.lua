@@ -1,15 +1,30 @@
 return {
   "goolord/alpha-nvim",
-  -- dependencies = { 'echasnovski/mini.icons' },
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = { "VimEnter" },
   config = function()
     local startify = require("alpha.themes.startify")
-    -- available: devicons, mini, default is mini
-    -- if provider not loaded and enabled is true, it will try to use another provider
+
+    -- Set your custom header
+    startify.section.header.val = {
+      "  ██╗     ██╗   ██╗ ",
+      "  ██║     ██║   ██║ ",
+      "  ██║     ╚██╗ ██╔╝ ",
+      "  ██║      ╚████╔╝  ",
+      "  ███████╗  ╚██╔╝   ",
+      "  ╚══════╝   ╚═╝    ",
+    }
+
+    -- Set file icons provider
     startify.file_icons.provider = "devicons"
-    require("alpha").setup(
-      startify.config
-    )
+
+    -- Send config to alpha
+    require("alpha").setup(startify.config)
+
+    -- Disable folding on alpha buffer
+    vim.cmd([[
+      autocmd FileType alpha setlocal nofoldenable
+    ]])
   end,
 }
+
