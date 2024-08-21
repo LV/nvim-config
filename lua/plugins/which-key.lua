@@ -14,7 +14,10 @@ return {
       },
 
       { "<leader>c", group = "code" },
+
       { "<leader>f", group = "file" },
+      { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
+
       { "<leader>g", group = "git" },
 
       { "<leader>h", "<cmd>HopWord<CR>", desc = "Open NVim Packages (LazyVim)" },
