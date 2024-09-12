@@ -33,6 +33,8 @@ return {
       { "<leader>tcp", "<cmd>Template cpp/competitive_programming()<CR>", desc = "Load C++ competitive programming template" },
 
       { "<leader>w", group = "window" },
+
+      { "<leader>z", group = "zettelkasten" },
     },
   },
 }

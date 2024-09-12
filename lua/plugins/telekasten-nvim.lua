@@ -9,5 +9,8 @@ return {
   lazy = true,
   ft = "markdown",
   dependencies = { "nvim-telescope/telescope.nvim" },
+  keys = {
+      { "<leader>zp", "<cmd>Telekasten panel<CR>", desc = "Panel" },
+  },
   config = config,
 }
