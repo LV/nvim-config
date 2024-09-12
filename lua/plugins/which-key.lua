@@ -35,6 +35,7 @@ return {
       { "<leader>w", group = "window" },
 
       { "<leader>z", group = "zettelkasten" },
+      { "<leader>zn", group = "new" },
     },
   },
 }
