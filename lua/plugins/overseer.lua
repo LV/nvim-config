@@ -6,8 +6,8 @@ return {
  "stevearc/overseer.nvim",
   lazy = true,
   keys = {
-    { "<leader>sr", "<cmd>OverseerRun<CR>", desc = "Run Shell" },
-    { "<leader>st", "<cmd>OverseerToggle<CR>", desc = "Toggle Shells" },
+    { "<leader>rr", "<cmd>OverseerRun<CR>", desc = "Run Runner" },
+    { "<leader>rt", "<cmd>OverseerToggle<CR>", desc = "Toggle Runner" },
   },
   config = config,
   opts = {},
