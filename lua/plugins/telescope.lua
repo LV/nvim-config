@@ -1,5 +1,5 @@
 local keys = {
-  { "<leader>.", "<cmd>Telescope find_files<CR>", desc = "Find All Files" },
+  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
   { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
 }
 
