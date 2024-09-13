@@ -25,6 +25,8 @@ return {
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
 
+      { "<leader>r", group = "runner" },
+
       -- Template
       { "<leader>t", group = "template" },
       { "<leader>tc", group = "cpp" },
