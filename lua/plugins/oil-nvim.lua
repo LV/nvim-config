@@ -1,6 +1,10 @@
 local config = function()
   require("oil").setup({
     default_file_explorer = true,
+    keymaps = {
+      ["<BS>"] = "actions.parent",
+      ["q"] = "actions.close",
+    },
   })
 end
 
