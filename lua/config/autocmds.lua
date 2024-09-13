@@ -66,4 +66,10 @@ set_indentation_settings({
     shiftwidth = 2,
     tabstop = 2,
   },
+
+  nix = {
+    expandtab = true,
+    shiftwidth = 2,
+    tabstop = 2,
+  },
 })
