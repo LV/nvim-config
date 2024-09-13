@@ -1,4 +1,4 @@
 # Neovim Config
 
 ## Pre-reqs
-- ripgrep
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
