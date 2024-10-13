@@ -72,8 +72,8 @@ M.config = function()
 		},
 		emmet_ls = {
 			filetypes = {
-				"javascriptreact", "typescriptreact", "javascript", "css", "sass",
-				"scss", "less", "svelte", "vue", "html",
+        "css", "html", "javascript", "javascriptreact", "less", "sass",
+        "scss", "svelte", "typescript", "typescriptreact", "vue",
 			},
 		},
 	}
@@ -103,8 +103,8 @@ M.config = function()
 	-- Lazy-load EFM server configuration
 	local efm_languages = {}
 	local efm_filetypes = {
-		"lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact",
-		"json", "jsonc", "sh", "markdown", "yaml", "css", "html", "c", "cpp",
+    "c", "css", "cpp", "html", "javascript", "javascriptreact", "json", "jsonc",
+    "lua", "markdown", "python", "sh", "typescript", "typescriptreact", "yaml",
 	}
 
 	local efm_config_loaded = false
@@ -113,21 +113,21 @@ M.config = function()
 		if efm_languages[ft] then return end
 
 		local configs = {
-			lua = { "luacheck", "stylua" },
-			python = { "flake8", "black" },
+			c = { "clang_format", "cpplint" },
+			css = { "prettier_d" },
+			cpp = { "clang_format", "cpplint" },
+			html = { "prettier_d" },
 			javascript = { "eslint", "prettier_d" },
-			typescript = { "eslint", "prettier_d" },
 			javascriptreact = { "eslint", "prettier_d" },
-			typescriptreact = { "eslint", "prettier_d" },
 			json = { "eslint", "fixjson" },
 			jsonc = { "eslint", "fixjson" },
-			sh = { "shellcheck", "shfmt" },
+			lua = { "luacheck", "stylua" },
 			markdown = { "prettier_d" },
+			python = { "flake8", "black" },
+			sh = { "shellcheck", "shfmt" },
+			typescript = { "eslint", "prettier_d" },
+			typescriptreact = { "eslint", "prettier_d" },
 			yaml = { "yamllint" },
-			css = { "prettier_d" },
-			html = { "prettier_d" },
-			c = { "clang_format", "cpplint" },
-			cpp = { "clang_format", "cpplint" },
 		}
 
 		if configs[ft] then
