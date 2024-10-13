@@ -35,6 +35,8 @@ return {
       { "<leader>tcp", "<cmd>Template cpp/competitive_programming()<CR>", desc = "Load C++ competitive programming template" },
 
       { "<leader>w", group = "window" },
+      { "<leader>ws", "<cmd>split<CR>", desc = "Split window" },
+      { "<leader>wv", "<cmd>vsplit<CR>", desc = "Split window vertically" },
 
       { "<leader>z", group = "zettelkasten" },
       { "<leader>zn", group = "new" },
