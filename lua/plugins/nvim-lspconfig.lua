@@ -71,7 +71,7 @@ M.config = function()
         },
       },
     },
-    tsserver = {
+    ts_ls = {
       filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
       commands = {
         TypeScriptOrganizeImports = util.lsp.typescript_organise_imports,
