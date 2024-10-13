@@ -25,7 +25,7 @@ M.config = function()
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end
 
-  -- Lazy-load LSP configurations
+  -- Define server configurations
   local server_configs = {
     bashls = { filetypes = { "sh", "aliasrc" } },
     clangd = {
@@ -50,15 +50,18 @@ M.config = function()
     },
     nixd = {
       filetypes = { "nix" },
-      root_dir = lspconfig.util.root_pattern("flake.nix", ".git") or lspconfig.util.find_git_ancestor or lspconfig.util.path.dirname,
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern("flake.nix", ".git")(fname)
+          or lspconfig.util.find_git_ancestor(fname)
+          or lspconfig.util.path.dirname(fname)
+      end,
       cmd = { "nixd" },
       single_file_support = true,
     },
     pyright = {
       filetypes = { "python" },
       settings = {
-        pyright = {
-          disableOrganizeImports = false,
+        python = {
           analysis = {
             useLibraryCodeForTypes = true,
             autoSearchPaths = true,
@@ -84,19 +87,6 @@ M.config = function()
     },
   }
 
-  -- Collect all filetypes from server_configs
-  local lsp_filetypes = {}
-  for _, config in pairs(server_configs) do
-    for _, ft in ipairs(config.filetypes or {}) do
-      lsp_filetypes[ft] = true
-    end
-  end
-
-  local lsp_filetype_list = {}
-  for ft, _ in pairs(lsp_filetypes) do
-    table.insert(lsp_filetype_list, ft)
-  end
-
   -- Function to set up a server
   local function setup_server(server_name)
     local config = vim.tbl_deep_extend("force", {
@@ -106,20 +96,13 @@ M.config = function()
     lspconfig[server_name].setup(config)
   end
 
-  -- Set up servers lazily
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = lsp_filetype_list,  -- Use the collected filetypes
-    callback = function()
-      local ft = vim.bo.filetype
-      for server, config in pairs(server_configs) do
-        if vim.tbl_contains(config.filetypes or { ft }, ft) then
-          setup_server(server)
-        end
-      end
-    end,
-  })
+  -- Set up servers explicitly
+  local servers_to_setup = vim.tbl_keys(server_configs)
+  for _, server in ipairs(servers_to_setup) do
+    setup_server(server)
+  end
 
-  -- Lazy-load EFM server configuration
+  -- Lazy-load EFM server configuration remains the same
   local efm_languages = {}
   local efm_filetypes = {
     "c", "css", "cpp", "html", "javascript", "javascriptreact", "json", "jsonc",
@@ -194,7 +177,7 @@ M.config = function()
   })
 end
 
--- Lazy-load the entire LSP setup
+-- Load the LSP setup
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -208,4 +191,3 @@ return {
     "hrsh7th/cmp-nvim-lsp",
   },
 }
-
