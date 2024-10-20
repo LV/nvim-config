@@ -2,4 +2,5 @@
 #+author: Luis Victoria
 
 ** Pre-reqs
-- [[ripgrep][https://github.com/BurntSushi/ripgrep]]
+- [[https://github.com/junegunn/fzf][fzf]]
+- [[https://github.com/BurntSushi/ripgrep][ripgrep]]
