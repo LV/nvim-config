@@ -1,8 +1,9 @@
--- List of default settings:
--- https://github.com/nvim-orgmode/orgmode/blob/master/lua/orgmode/config/defaults.lua
+-- Documentation on settings:
+-- https://github.com/nvim-orgmode/orgmode/blob/master/DOCS.md
 
 local config = function()
-  -- Setup orgmode
+  -- Overwrite default settings
+  -- https://github.com/nvim-orgmode/orgmode/blob/master/lua/orgmode/config/defaults.lua
   require('orgmode').setup({
     org_agenda_files = '~/org/**/*',
     org_default_notes_file = '~/org/refile.org',
@@ -24,3 +25,4 @@ return {
   ft = { 'org' },
   config = config,
 }
+
