@@ -9,6 +9,7 @@ local config = function()
     org_default_notes_file = '~/org/refile.org',
     org_hide_emphasis_markers = false,
     org_hide_leading_stars = false,
+    org_adapt_indentation = false,
   })
 
   -- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
