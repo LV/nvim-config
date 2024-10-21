@@ -72,4 +72,10 @@ set_indentation_settings({
     shiftwidth = 2,
     tabstop = 2,
   },
+
+  org = {
+    expandtab = true,
+    shiftwidth = 2,
+    tabstop = 2,
+  },
 })
