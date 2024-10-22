@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.wo.number = false  -- Disable line numbers
     vim.wo.relativenumber = false  -- Disable relative numbers (if enabled)
   end,
-})
+}) -- TODO: Fix this. Works when you first launch terminal, but if you open a buffer and then quit to return to terminal, the lines appear again
 
 -- Optional: Re-enable line numbers when leaving terminal mode
 vim.api.nvim_create_autocmd("BufLeave", {
