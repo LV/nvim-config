@@ -5,6 +5,9 @@ local config = function()
       ["<BS>"] = "actions.parent",
       ["q"] = "actions.close",
     },
+    view_options = {
+      show_hidden = true,
+    },
   })
 end
 
@@ -23,3 +26,5 @@ return {
   },
   config = config,
 }
+
+-- TODO: Make it so that when inside of an oil.nvim buffer and you do ~<leader>fg~, you will only grep from whatever directory you are in inside of (do not start ripgrep from when ~oil.nvim~ was invoked:w
