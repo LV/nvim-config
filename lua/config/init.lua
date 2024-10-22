@@ -8,6 +8,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config.globals")
 require("config.indentation")
 require("config.keymaps")
+require("config.neovide")
 require("config.options")
 
 local plugins = "plugins"
