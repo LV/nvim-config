@@ -11,6 +11,6 @@ mapkey("<leader>wj", "wincmd j", "n") -- Navigate down
 mapkey("<leader>wh", "wincmd h", "n") -- Navigate left
 mapkey("<leader>wl", "wincmd l", "n") -- Navigate right
 
--- Go to normal mode from terminal mode by pressing CRTL+Enter
-vim.api.nvim_set_keymap("t", "<C-Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<Insert><Escape>", "<C-\\><C-n>", { noremap = true, silent = true })
+-- Go to normal mode from terminal mode by pressing Escape
+vim.api.nvim_set_keymap("t", "<Escape>", "<C-\\><C-n>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<Insert><Escape>", "<Escape>", { noremap = true, silent = true })
