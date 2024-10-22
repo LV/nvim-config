@@ -23,8 +23,12 @@ local config = function()
   vim.cmd("TransparentEnable")
 end
 
-return {
-  "xiyaowong/transparent.nvim",
-  lazy = false,
-  config = config,
-}
+if vim.g.neovide then
+  return {}
+else
+  return {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    config = config,
+  }
+end
