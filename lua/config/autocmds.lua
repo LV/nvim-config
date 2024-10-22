@@ -15,3 +15,5 @@ vim.api.nvim_create_autocmd("BufLeave", {
     vim.wo.relativenumber = true  -- Re-enable relative numbers (if needed)
   end,
 })
+
+-- TODO: Make it so that when you open terminal when inside of a buffer with a specific file (or ~oil.nvim~), when you do ~<leader>t~, you will already have ~cd~ into the folder with the file from which you invoked the terminal from
