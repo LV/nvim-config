@@ -5,6 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("config.autocmds")
 require("config.globals")
 require("config.indentation")
 require("config.keymaps")
