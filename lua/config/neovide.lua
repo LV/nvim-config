@@ -8,7 +8,7 @@ vim.g.neovide_transparency = 1.0 -- TODO: Make it so that transparency is 1.0 if
 if vim.g.neovide then
   vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
-      vim.cmd("silent! cd ~")
+      vim.cmd("silent! cd ~") -- TODO: This kind of breaks all the other buffer stuff! Can't ripgrep or fzf from the file's respective directory anymore
     end
   })
 end
