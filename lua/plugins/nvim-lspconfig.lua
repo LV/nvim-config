@@ -85,10 +85,21 @@ M.config = function()
       settings = { typescript = { indentStyle = "space", indentSize = 2 } },
       root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
     },
-    typst_lsp = {
+    tinymist = {
       filetypes = { "typst" },
-      root_dir = lspconfig.util.root_pattern(".git", "typst.toml"),
-      cmd = { "typst-lsp" },
+      settings = {
+        exportPdf = "onType",
+        outputPath = "$root/target/$dir/$name",
+        -- rootPath = "-",
+        semanticTokens = "enable",
+        systemFonts = true,
+      },
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern(".git", "typst.toml")(fname)
+        or lspconfig.util.find_git_ancestor(fname)
+        or vim.fn.getcwd() -- Fallback to current working directory
+      end,
+      cmd = { "tinymist" },
     },
   }
 
