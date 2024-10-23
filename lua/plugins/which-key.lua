@@ -16,7 +16,7 @@ return {
       { "<leader>c", group = "code" },
 
       { "<leader>f", group = "file" },
-      { "<leader>fc", group = "open config" },
+      { "<leader>fc", group = "config" },
       { "<leader>fcv",
         function()
           require("oil").open("~/.config/nvim")
