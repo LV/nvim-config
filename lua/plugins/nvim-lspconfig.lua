@@ -121,8 +121,7 @@ M.config = function()
   -- Lazy-load EFM server configuration remains the same
   local efm_languages = {}
   local efm_filetypes = {
-    "c", "css", "cpp", "html", "javascript", "javascriptreact", "json", "jsonc",
-    "lua", "markdown", "python", "sh", "typescript", "typescriptreact", "yaml",
+    "c", "css", "cpp", "html", "javascript", "javascriptreact", "json", "jsonc", "lua", "markdown", "python", "sh", "typescript", "typescriptreact", "yaml",
   }
 
   local efm_config_loaded = false
