@@ -85,6 +85,11 @@ M.config = function()
       settings = { typescript = { indentStyle = "space", indentSize = 2 } },
       root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
     },
+    typst_lsp = {
+      filetypes = { "typst" },
+      root_dir = lspconfig.util.root_pattern(".git", "typst.toml"),
+      cmd = { "typst-lsp" },
+    },
   }
 
   -- Function to set up a server
