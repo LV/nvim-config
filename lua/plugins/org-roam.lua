@@ -1,5 +1,13 @@
+local config = function ()
+  require("org-roam").setup({
+    directory = "~/org",
+  })
+end
+
+
 return {
   "chipsenkbeil/org-roam.nvim",
+  event = "VeryLazy",
   tag = "0.1.0",
   dependencies = {
     {
@@ -7,13 +15,5 @@ return {
       tag = "0.3.4",
     },
   },
-  config = function()
-    require("org-roam").setup({
-      directory = "~/org_roam_files",
-      -- optional
-      org_files = {
-        "~/org",
-      }
-    })
-  end
+  config = config,
 }
