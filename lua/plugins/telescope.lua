@@ -3,16 +3,21 @@ local keys = {
   { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
 }
 
+-- Patterns to ignore when searching
 local ignore_patterns = {
-  "build",
   ".cache",
-  "CMakeFiles",
+  ".config/emacs/elpa",
+  ".config/emacs/emojis",
   "_deps",
   ".DS_Store",
   ".git",
+  ".local",
+  ".npm",
+  ".venv",
+  "build",
+  "CMakeFiles",
   "linux-gcc-x86",
   "node_modules",
-  ".venv"
 }
 
 local config = function()
