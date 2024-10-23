@@ -16,6 +16,17 @@ return {
       { "<leader>c", group = "code" },
 
       { "<leader>f", group = "file" },
+      { "<leader>fc", group = "open config" },
+      { "<leader>fcv",
+        function()
+          require("oil").open("~/.config/nvim")
+        end,
+        desc = "Open Neovim Config" },
+      { "<leader>fcx",
+        function()
+          require("oil").open("~/nixos")
+        end,
+        desc = "Open Nixos Config" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
 
       { "<leader>g", group = "git" },
