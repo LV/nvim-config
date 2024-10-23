@@ -33,6 +33,12 @@ M.config = function()
       cmd = { "clangd", "--offset-encoding=utf-16" },
     },
     dockerls = { filetypes = { "dockerfile" } },
+    emmet_ls = {
+      filetypes = {
+        "css", "html", "javascript", "javascriptreact", "less", "sass",
+        "scss", "svelte", "typescript", "typescriptreact", "vue",
+      },
+    },
     jsonls = { filetypes = { "json", "jsonc" } },
     lua_ls = {
       filetypes = { "lua" },
@@ -78,12 +84,6 @@ M.config = function()
       },
       settings = { typescript = { indentStyle = "space", indentSize = 2 } },
       root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
-    },
-    emmet_ls = {
-      filetypes = {
-        "css", "html", "javascript", "javascriptreact", "less", "sass",
-        "scss", "svelte", "typescript", "typescriptreact", "vue",
-      },
     },
   }
 
