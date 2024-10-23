@@ -35,6 +35,11 @@ return {
 
       { "<leader>o", group = "org" },
 
+      { "<leader>n", group = "node" },
+      { "<leader>na", group = "alias" },
+      { "<leader>nd", group = "dailies" },
+      { "<leader>nd", group = "origin" },
+
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
 
