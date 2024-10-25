@@ -28,3 +28,4 @@ return {
   config = config,
 }
 
+-- TODO: Fix the 3rd level header indentation not showing a color (***)
