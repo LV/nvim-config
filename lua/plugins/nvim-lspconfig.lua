@@ -39,6 +39,26 @@ M.config = function()
         "scss", "svelte", "typescript", "typescriptreact", "vue",
       },
     },
+    gopls = {
+      filetypes = { "go", "gomod", "gowork", "gotmpl" },
+      cmd = { "gopls" },
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+            shadow = true,
+          },
+          staticcheck = true,
+        },
+      },
+    },
+    golangci_lint_ls = {
+      cmd = { "golangci-lint-langserver" },
+      filetypes = { "go", "gomod" },
+      init_options = {
+        command = { "golangci-lint", "run", "--out-format", "json" },
+      },
+    },
     jsonls = { filetypes = { "json", "jsonc" } },
     lua_ls = {
       filetypes = { "lua" },
