@@ -1,3 +1,9 @@
+local config = function ()
+  vim.keymap.set("n", "<leader>ot", function()
+    require("taskwarrior_nvim").browser({"ready"})
+  end, { noremap = true, silent = true, desc = "Taskwarrior" })
+end
+
 return {
   "ribelo/taskwarrior.nvim",
   opts = {
@@ -9,5 +15,6 @@ return {
     notify_stop = true,
     notify_error = true,
   },
+  config = config,
   event = "VeryLazy",
 }
