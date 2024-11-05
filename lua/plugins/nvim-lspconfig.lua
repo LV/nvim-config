@@ -139,7 +139,16 @@ M.config = function()
   end
 
   -- Lazy-load EFM server configuration remains the same
-  local efm_languages = {}
+  local efm_languages = {
+    lua = {
+      {
+        lintCommand = "luacheck --formatter plain --codes -",
+        lintStdin = true,
+        lintFormats = { "%f:%l:%c: %m" },
+      },
+      -- Add other Lua tools if needed, e.g., stylua for formatting
+    },
+  }
   local efm_filetypes = {
     "c", "css", "cpp", "html", "javascript", "javascriptreact", "json", "jsonc", "lua", "markdown", "python", "sh", "typescript", "typescriptreact", "yaml",
   }
