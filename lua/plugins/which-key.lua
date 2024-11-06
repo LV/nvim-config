@@ -1,11 +1,20 @@
 require("config/vault")
 require("util/input-prompt")
 
+local function typeThenPressEnterFromTerminalMode(insertion_text)
+  vim.schedule(function()
+    -- Insert `insertion_text` into the prompt
+    vim.api.nvim_feedkeys(insertion_text, "t", true)
+    -- Press Enter
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
+  end)
+end
+
 local function atomicNote()
   local input_title = PromptInput("Atomic Note Title: ")
   vim.cmd(string.format("ObsidianNewFromTemplate Atomic/%s.md", input_title))
+  typeThenPressEnterFromTerminalMode("Atomic.md")
 end
-
 
 -- display popup with keybindings of command you start typing
 return {
