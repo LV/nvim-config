@@ -33,6 +33,8 @@ return {
       return title
     end,
 
+    notes_subdir = "Notes",
+
     templates = {
       folder = "Templates",
     },
