@@ -37,6 +37,7 @@ return {
       { "<leader>od", group = "daily" },
       { "<leader>odd", "<cmd>ObsidianDailies<CR>", desc = "See Recent Dailies" },
           -- NOTE: `<cmd>ObsidianDailies -2 1<CR>` Shows Dailies from 2 days ago until tomorrow
+      { "<leader>odg", "<cmd>ObsidianSearch<CR>", desc = "Ripgrep Vault" },
       { "<leader>odt", "<cmd>ObsidianToday<CR>", desc = "Open Today's Document" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
