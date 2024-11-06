@@ -2,7 +2,7 @@ return {
   "epwalsh/obsidian.nvim",
   version = "*",  -- recommended, use latest release instead of latest commit
   lazy = true,
-  event = { "VimEnter" },  -- Load on any Markdown file
+  event = { "VimEnter" },  -- Load on launching
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
@@ -23,13 +23,12 @@ return {
       folder = "Daily",
       date_format = "%Y-%m-%d",
     },
+
     workspaces = {
       {
         name = "work",
         path = "~/bbvault",
       },
     },
-
-    -- see below for full list of options 👇
   },
 }
