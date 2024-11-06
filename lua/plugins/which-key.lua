@@ -2,8 +2,8 @@ require("config/vault")
 require("util/input-prompt")
 
 local function atomicNote()
-  local title = PromptInput("Atomic Note Title: ")
-  vim.cmd(string.format("<cmd>ObsidianNewFromTemplate %s", title))
+  local input_title = PromptInput("Atomic Note Title: ")
+  vim.cmd(string.format("ObsidianNewFromTemplate Atomic/%s.md", input_title))
 end
 
 
@@ -49,8 +49,9 @@ return {
       { "<leader>odt", "<cmd>ObsidianToday<CR>", desc = "Open Today's Document" },
       { "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", desc = "Find File in Vault" },
       { "<leader>og", "<cmd>ObsidianSearch<CR>", desc = "Ripgrep Vault" },
+      { "<leader>on", group = "note" },
       { "<leader>onn", "<cmd>ObsidianNew<CR>", desc = "New Note" },
-      -- { "<leader>ona", atomicNote(), desc = "New Atomic Note" }, -- TODO: This auto executes when launching Neovim, need to fix so that it is invoked
+      { "<leader>ona", atomicNote, desc = "New Atomic Note" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
