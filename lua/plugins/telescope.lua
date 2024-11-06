@@ -1,6 +1,6 @@
 local keys = {
-  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
-  { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
+  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files" },
+  { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Ripgrep" },
 }
 
 -- Patterns to ignore when searching
