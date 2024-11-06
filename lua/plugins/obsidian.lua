@@ -46,7 +46,7 @@ return {
     },
 
     -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
-    disable_frontmatter = false,
+    disable_frontmatter = true,
 
     -- Optional, alternatively you can customize the frontmatter data.
     ---@return table
