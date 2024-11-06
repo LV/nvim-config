@@ -19,6 +19,9 @@ return {
     -- see below for full list of optional dependencies 👇
   },
   opts = {
+    daily_notes = {
+      folder = "Daily",
+    },
     workspaces = {
       {
         name = "personal",
