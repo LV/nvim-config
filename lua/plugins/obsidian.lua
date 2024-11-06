@@ -21,6 +21,7 @@ return {
   opts = {
     daily_notes = {
       folder = "Daily",
+      date_format = "%Y-%m-%d",
     },
     workspaces = {
       {
