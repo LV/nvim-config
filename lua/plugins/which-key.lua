@@ -1,3 +1,5 @@
+require("config/vault")
+
 -- display popup with keybindings of command you start typing
 return {
   "folke/which-key.nvim",
@@ -40,6 +42,8 @@ return {
       { "<leader>odt", "<cmd>ObsidianToday<CR>", desc = "Open Today's Document" },
       { "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", desc = "Find File in Vault" },
       { "<leader>og", "<cmd>ObsidianSearch<CR>", desc = "Ripgrep Vault" },
+      { "<leader>onn", "<cmd>ObsidianNew<CR>", desc = "New Note" },
+      { "<leader>ona", "<cmd>ObsidianNewFromTemplate Atomic/What Exactly is Love.md<CR>", desc = "New Atomic Note" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
