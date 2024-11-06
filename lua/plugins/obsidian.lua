@@ -24,6 +24,19 @@ return {
       date_format = "%Y-%m-%d",
     },
 
+    disable_frontmatter = true,
+
+    -- Optional, customize how note IDs are generated given an optional title.
+    ---@param title string|?
+    ---@return string
+    note_id_func = function(title)
+      return title
+    end,
+
+    templates = {
+      folder = "Templates",
+    },
+
     workspaces = {
       {
         name = "work",
