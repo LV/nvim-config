@@ -1,3 +1,5 @@
+require("config/vault")
+
 ---@param title string|?
 ---@return string
 local get_note_id = function(title)
@@ -82,8 +84,8 @@ return {
 
     workspaces = {
       {
-        name = "work",
-        path = "~/bbvault",
+        name = "vault",
+        path = VaultPath,
       },
     },
   },
