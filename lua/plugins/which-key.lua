@@ -34,6 +34,8 @@ return {
       { "<leader>h", "<cmd>HopWord<CR>", desc = "Open NVim Packages (LazyVim)" },
 
       { "<leader>o", group = "org" },
+      { "<leader>od", group = "daily" },
+      { "<leader>odt", "<cmd>ObsidianToday<CR>", desc = "Open Today's Document" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
