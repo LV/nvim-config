@@ -1,22 +1,30 @@
 require("config/vault")
 require("util/input-prompt")
 
-local function typeThenPressEnterFromTerminalMode(insertion_text)
-  vim.schedule(function()
-    -- Insert `insertion_text` into the prompt
-    vim.api.nvim_feedkeys(insertion_text, "t", true)
-    -- Press Enter
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
-  end)
-end
-
-local function atomicNote()
+local function createAtomicNote()
   local input_title = PromptInput("Atomic Note Title: ")
-  vim.cmd(string.format("ObsidianNewFromTemplate Atomic/%s.md", input_title))
-  typeThenPressEnterFromTerminalMode("Atomic.md")
+  if input_title and input_title ~= "" then
+    vim.cmd(string.format("ObsidianNew Atomic/%s.md", input_title))
+    -- Set the frontmatter
+    vim.schedule(function()
+      local frontmatter = string.format([[---
+id: "%s"
+alias:
+  - %s
+tags:
+  - atomic-note
+---
+]],
+        os.date("%Y%m%d%H%M%S"),  -- id
+        input_title  -- alias
+      )
+
+      -- Replace entire buffer content with our new content
+      vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(frontmatter, "\n", {}))
+    end)
+  end
 end
 
--- display popup with keybindings of command you start typing
 return {
   "folke/which-key.nvim",
   dependencies = { "echasnovski/mini.nvim" },
@@ -60,7 +68,7 @@ return {
       { "<leader>og", "<cmd>ObsidianSearch<CR>", desc = "Ripgrep Vault" },
       { "<leader>on", group = "note" },
       { "<leader>onn", "<cmd>ObsidianNew<CR>", desc = "New Note" },
-      { "<leader>ona", atomicNote, desc = "New Atomic Note" },
+      { "<leader>ona", createAtomicNote, desc = "New Atomic Note" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
