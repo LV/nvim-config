@@ -1,29 +1,5 @@
 require("config/vault")
-require("util/input-prompt")
-
-local function createAtomicNote()
-  local input_title = PromptInput("Atomic Note Title: ")
-  if input_title and input_title ~= "" then
-    vim.cmd(string.format("ObsidianNew Atomic/%s.md", input_title))
-    -- Set the frontmatter
-    vim.schedule(function()
-      local frontmatter = string.format([[---
-id: "%s"
-alias:
-  - %s
-tags:
-  - atomic-note
----
-]],
-        os.date("%Y%m%d%H%M%S"),  -- id
-        input_title  -- alias
-      )
-
-      -- Replace entire buffer content with our new content
-      vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(frontmatter, "\n", {}))
-    end)
-  end
-end
+require("util/which-key")
 
 return {
   "folke/which-key.nvim",
@@ -67,8 +43,9 @@ return {
       { "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", desc = "Find File in Vault" },
       { "<leader>og", "<cmd>ObsidianSearch<CR>", desc = "Ripgrep Vault" },
       { "<leader>on", group = "note" },
-      { "<leader>onn", "<cmd>ObsidianNew<CR>", desc = "New Note" },
-      { "<leader>ona", createAtomicNote, desc = "New Atomic Note" },
+      { "<leader>ona", CreateAtomicNote, desc = "New Atomic Note" },
+      { "<leader>onf", CreateFleetingNote, desc = "New Fleeting Note" },
+      { "<leader>onn", CreateNote, desc = "New Note" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
