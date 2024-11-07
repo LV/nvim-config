@@ -34,7 +34,6 @@ aliases:
   - null
 tags:
   - fleeting-note
-  dt
 ---
 ]],
       os.date("%Y%m%d%H%M%S")
