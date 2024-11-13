@@ -52,8 +52,6 @@ return {
 
       { "<leader>r", group = "runner" },
 
-      -- { "<leader>t", "<cmd>term<CR>", desc = "Terminal" },
-
       { "<leader>w", group = "window" },
       { "<leader>ws", "<cmd>split<CR>", desc = "Split window" },
       { "<leader>wv", "<cmd>vsplit<CR>", desc = "Split window vertically" },
