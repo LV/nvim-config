@@ -46,6 +46,7 @@ return {
       { "<leader>ona", CreateAtomicNote, desc = "New Atomic Note" },
       { "<leader>onf", CreateFleetingNote, desc = "New Fleeting Note" },
       { "<leader>onn", CreateNote, desc = "New Note" },
+      { "<leader>ot", Timer, desc = "Timer" },
 
       { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },

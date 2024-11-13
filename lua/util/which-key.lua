@@ -53,3 +53,21 @@ function CreateNote()
     end)
   end
 end
+
+IsTimerSet = false
+
+function Timer()
+  if not IsTimerSet then
+    local input_time = PromptInput("Set Timer: ")
+    if input_time and input_time ~= "" then
+      local success, err = pcall(vim.cmd, string.format("TimerStart %s", input_time))
+      if success then
+        -- FIXME: This executes regardless of a bad input!
+        IsTimerSet = true
+      end
+    end
+  else
+    vim.cmd("TimerStop")
+    IsTimerSet = false
+  end
+end
