@@ -34,12 +34,15 @@ return {
   --   "BufNewFile path/to/my-vault/*.md",
   -- },
   dependencies = {
-    -- Required.
     "nvim-lua/plenary.nvim",
-
-    -- see below for full list of optional dependencies 👇
   },
+
   opts = {
+    attachments = {
+      -- Default folder to place images via `:ObsidianPasteImg`
+      img_folder = "assets",
+    },
+
     daily_notes = {
       folder = "Daily",
       date_format = "%Y-%m-%d",
