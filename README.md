@@ -2,5 +2,5 @@
 
 ## Pre-requisites
 ```sh
-brew install fzf ripgrep vscode-langservers-extracted
+brew install basedpyright fzf ripgrep vscode-langservers-extracted
 ```
