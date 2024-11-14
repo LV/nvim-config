@@ -84,16 +84,14 @@ M.config = function()
       cmd = { "nixd" },
       single_file_support = true,
     },
-    pyright = {
+    basedpyright = {
       filetypes = { "python" },
-      settings = {
-        python = {
-          analysis = {
-            useLibraryCodeForTypes = true,
-            autoSearchPaths = true,
-            diagnosticMode = "workspace",
-            autoImportCompletions = true,
-          },
+      python = {
+        analysis = {
+          useLibraryCodeForTypes = true,
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          autoImportCompletions = true,
         },
       },
     },
