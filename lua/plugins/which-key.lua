@@ -30,6 +30,11 @@ return {
         end,
         desc = "Open Nixos Config" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
+      { "<leader>fv",
+        function()
+          require("oil").open(VaultPath)
+        end,
+        desc = "Open Vault" },
 
       { "<leader>g", group = "git" },
 
