@@ -1,6 +1,0 @@
-#+title: Neovim Config
-#+author: Luis Victoria
-
-** Pre-reqs
-- [[https://github.com/junegunn/fzf][fzf]]
-- [[https://github.com/BurntSushi/ripgrep][ripgrep]]
