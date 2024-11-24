@@ -59,6 +59,22 @@ M.config = function()
         command = { "golangci-lint", "run", "--out-format", "json" },
       },
     },
+    rust_analyzer = {
+      filetypes = { "rust" },
+      cmd = { "rust-analyzer" },
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = { allFeatures = true },
+          checkOnSave = { command = "clippy" },
+          procMacro = { enable = true },
+        },
+      },
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern("Cargo.toml", "rust-project.json")(fname)
+          or lspconfig.util.find_git_ancestor(fname)
+          or vim.fn.getcwd()
+      end,
+    },
     jsonls = { filetypes = { "json", "jsonc" } },
     lua_ls = {
       filetypes = { "lua" },
@@ -108,14 +124,13 @@ M.config = function()
       settings = {
         exportPdf = "onType",
         outputPath = "$root/$dir/$name", -- save in the same directory as the source
-        -- rootPath = "-",
         semanticTokens = "enable",
         systemFonts = true,
       },
       root_dir = function(fname)
         return lspconfig.util.root_pattern(".git", "typst.toml")(fname)
-        or lspconfig.util.find_git_ancestor(fname)
-        or vim.fn.getcwd() -- Fallback to current working directory
+          or lspconfig.util.find_git_ancestor(fname)
+          or vim.fn.getcwd()
       end,
       cmd = { "tinymist" },
     },
