@@ -39,8 +39,9 @@ return {
     { "<leader>.",   function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
     { "<leader>os",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     { "<leader>gB",  function() Snacks.gitbrowse() end, desc = "Git Browse" },
-    { "<leader>gg",  function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
     { "<leader>gbl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+    { "<leader>gg",  function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
+    { "<leader>gl",  function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
     { "<leader>t",   function() Snacks.terminal() end, desc = "Toggle Terminal" },
   },
 }
