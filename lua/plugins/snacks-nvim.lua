@@ -1,3 +1,4 @@
+-- HELPER FUNCTIONS
 local lazygit_repo_from_cwd = function()
   -- When opening lazygit, open repo in the directory of the current buffer.
   -- Rather than opening repo from directory where `nvim` was first invoked.
@@ -18,6 +19,23 @@ local lazygit_repo_from_cwd = function()
   end
 end
 
+
+-- CONFIGURATIONS
+local dashboard_config = {
+  enabled = true,
+  preset = {
+    header = [[
+██╗     ██╗   ██╗
+██║     ██║   ██║
+██║     ╚██╗ ██╔╝
+██║      ╚████╔╝ 
+███████╗  ╚██╔╝  
+╚══════╝   ╚═╝   
+    ]]
+  },
+}
+
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -27,6 +45,7 @@ return {
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     bigfile = { enabled = true },
+    dashboard = dashboard_config,
     notifier = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
