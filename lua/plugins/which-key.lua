@@ -39,7 +39,7 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>gb", group = "blame" },
 
-      { "<leader>h", "<cmd>HopWord<CR>", desc = "Open NVim Packages (LazyVim)" },
+      { "<leader>h", "<cmd>HopWord<CR>", desc = "Hop Word" },
 
       { "<leader>n", group = "notifications" },
 
