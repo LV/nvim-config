@@ -33,6 +33,7 @@ local dashboard_config = {
 ╚══════╝   ╚═╝   
     ]]
   },
+  -- TODO: Add the GitHub dashboard
 }
 
 
