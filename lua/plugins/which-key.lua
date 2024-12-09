@@ -37,6 +37,7 @@ return {
         desc = "Open Vault" },
 
       { "<leader>g", group = "git" },
+      { "<leader>gb", group = "blame" },
 
       { "<leader>h", "<cmd>HopWord<CR>", desc = "Open NVim Packages (LazyVim)" },
 

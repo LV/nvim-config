@@ -3,7 +3,7 @@ return {
   lazy = true,
   cmd = { "G", "Git" },
   keys = {
-    { "<leader>gb", "<cmd>Git blame<CR>", desc = "Git Blame" },
+    { "<leader>gbb", "<cmd>Git blame<CR>", desc = "Git Blame" },
     { "<leader>gd", "<cmd>Git diff<CR>", desc = "Git Diff" },
     -- More commands here: https://github.com/tpope/vim-fugitive
   },
