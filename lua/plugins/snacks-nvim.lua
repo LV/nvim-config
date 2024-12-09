@@ -12,4 +12,8 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },
+  keys = {
+    { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
+    { "<leader>gl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
+  },
 }
