@@ -41,6 +41,8 @@ return {
 
       { "<leader>h", "<cmd>HopWord<CR>", desc = "Open NVim Packages (LazyVim)" },
 
+      { "<leader>n", group = "notifications" },
+
       { "<leader>o", group = "org" },
       { "<leader>od", group = "daily" },
       { "<leader>odd", "<cmd>ObsidianDailies<CR>", desc = "See Recent Dailies" },
