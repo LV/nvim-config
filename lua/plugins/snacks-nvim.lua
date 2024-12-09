@@ -13,6 +13,8 @@ return {
     words = { enabled = true },
   },
   keys = {
+    { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>os",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
     { "<leader>gl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
   },
