@@ -42,6 +42,8 @@ return {
     { "<leader>gbl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
     { "<leader>gg",  function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
     { "<leader>gl",  function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
+    { "<leader>nd",  function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+    { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
     { "<leader>t",   function() Snacks.terminal() end, desc = "Toggle Terminal" },
   },
 }
