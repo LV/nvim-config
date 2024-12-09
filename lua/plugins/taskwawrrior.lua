@@ -1,5 +1,5 @@
 local config = function ()
-  vim.keymap.set("n", "<leader>t", function()
+  vim.keymap.set("n", "<leader>oT", function()
     require("taskwarrior_nvim").browser({"ready"})
   end, { noremap = true, silent = true, desc = "Taskwarrior" })
 end
