@@ -20,6 +20,9 @@ local lazygit_repo_from_cwd = function()
 end
 
 
+---@class snacks.dashboard.Config
+---@field sections snacks.dashboard.Section
+---@field formats table<string, snacks.dashboard.Text|fun(item:snacks.dashboard.Item, ctx:snacks.dashboard.Format.ctx):snacks.dashboard.Text>
 -- CONFIGURATIONS
 local dashboard_config = {
   enabled = true,
