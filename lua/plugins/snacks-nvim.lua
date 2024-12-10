@@ -105,7 +105,7 @@ local dashboard_config = {
         },
         {
           icon = " ",
-          title = "Git Status",
+          title = "Git Activity",
           cmd = "hub --no-pager diff --stat -B -M -C",
           height = 10,
         },
