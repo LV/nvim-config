@@ -52,7 +52,7 @@ local dashboard_config = {
       icon = " ",
       desc = "Browse Repo",
       padding = 1,
-      key = "b",
+      key = "B",
       action = function()
         Snacks.gitbrowse()
       end,
@@ -74,7 +74,7 @@ local dashboard_config = {
         {
           title = "Open Issues",
           cmd = "gh issue list -L 3",
-          key = "i",
+          key = "I",
           action = function()
             vim.fn.jobstart("gh issue list --web", { detach = true })
           end,
@@ -85,7 +85,7 @@ local dashboard_config = {
           icon = " ",
           title = "Open PRs",
           cmd = "gh pr list -L 3",
-          key = "p",
+          key = "P",
           action = function()
             vim.fn.jobstart("gh pr list --web", { detach = true })
           end,
