@@ -66,7 +66,7 @@ local dashboard_config = {
           action = function()
             vim.ui.open("https://github.com/notifications")
           end,
-          key = "n",
+          key = "N",
           icon = " ",
           height = 5,
           enabled = true,
