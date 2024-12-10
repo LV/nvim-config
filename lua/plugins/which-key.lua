@@ -64,8 +64,8 @@ return {
       { "<leader>s", "<cmd>Pendulum<CR>", desc = "Usage Statistics" },
 
       { "<leader>w", group = "window" },
-      { "<leader>ws", "<cmd>split<CR>", desc = "Split window" },
-      { "<leader>wv", "<cmd>vsplit<CR>", desc = "Split window vertically" },
+      { "<leader>ws", "<cmd>split<CR>", desc = "Split Window Horizontally" },
+      { "<leader>wv", "<cmd>vsplit<CR>", desc = "Split Window Vertically" },
     },
   },
 }
