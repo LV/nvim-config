@@ -29,6 +29,7 @@ M.config = function()
   local server_configs = {
     bashls = { filetypes = { "sh", "aliasrc" } },
     clangd = {
+      -- Include `.h` here so clangd can handle them
       filetypes = { "c", "cpp" },
       cmd = { "clangd", "--offset-encoding=utf-16" },
     },
@@ -123,7 +124,7 @@ M.config = function()
       filetypes = { "typst" },
       settings = {
         exportPdf = "onType",
-        outputPath = "$root/$dir/$name", -- save in the same directory as the source
+        outputPath = "$root/$dir/$name",
         semanticTokens = "enable",
         systemFonts = true,
       },
@@ -151,60 +152,83 @@ M.config = function()
     setup_server(server)
   end
 
-  -- Lazy-load EFM server configuration remains the same
+  -- Automatically guess `.h` filetype based on neighboring files
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.h",
+    callback = function()
+      local fname = vim.fn.expand("%:r") -- file name without extension
+      if vim.fn.glob(fname .. ".cpp") ~= "" or vim.fn.glob(fname .. ".cc") ~= "" or vim.fn.glob(fname .. ".cxx") ~= "" then
+        vim.bo.filetype = "cpp"
+      elseif vim.fn.glob(fname .. ".c") ~= "" then
+        vim.bo.filetype = "c"
+      else
+        -- Default to C++ if unsure
+        vim.bo.filetype = "cpp"
+      end
+    end,
+  })
+
+  -- EFM configuration
+  local efm_config_loaded = false
+
+  -- Try loading efmls configs for clang tools
+  local ok_clang_tidy, clang_tidy = pcall(require, "efmls-configs.linters.clang_tidy")
+  local ok_clang_format, clang_format = pcall(require, "efmls-configs.formatters.clang_format")
+
+  -- Fallback if efmls-configs not installed or linters/formatters not found
+  if not ok_clang_tidy then
+    clang_tidy = {
+      lintCommand = "clang-tidy --quiet --extra-arg=-std=c++17 --",
+      lintStdin = true,
+      lintFormats = { "%f:%l:%c: %m" },
+    }
+  end
+  if not ok_clang_format then
+    clang_format = {
+      formatCommand = "clang-format --style=Google",
+      formatStdin = true,
+    }
+  end
+
   local efm_languages = {
+    c = { clang_tidy, clang_format },
+    cpp = { clang_tidy, clang_format },
     lua = {
       {
         lintCommand = "luacheck --formatter plain --codes -",
         lintStdin = true,
         lintFormats = { "%f:%l:%c: %m" },
       },
-      -- Add other Lua tools if needed, e.g., stylua for formatting
     },
-  }
-  local efm_filetypes = {
-    "c", "css", "cpp", "html", "javascript", "javascriptreact", "json", "jsonc", "lua", "markdown", "python", "sh", "typescript", "typescriptreact", "yaml",
+    css = {},
+    html = {},
+    javascript = {},
+    javascriptreact = {},
+    json = {},
+    jsonc = {},
+    markdown = {},
+    python = {},
+    sh = {},
+    typescript = {},
+    typescriptreact = {},
+    yaml = {},
   }
 
-  local efm_config_loaded = false
+  -- We now include `h` as well. Since we set it dynamically above, it will either appear as `c` or `cpp` after the autocmd
+  local efm_filetypes = {
+    "c", "cpp", "lua", "css", "html", "javascript", "javascriptreact",
+    "json", "jsonc", "markdown", "python", "sh", "typescript",
+    "typescriptreact", "yaml",
+    -- We don't explicitly list "h" here, because after the autocmd it's either `c` or `cpp`.
+  }
 
   local function load_efm_config(ft)
-    if efm_languages[ft] then return end
-
-    local configs = {
-      c = { "clang_format", "cpplint" },
-      css = { "prettier_d" },
-      cpp = { "clang_format", "cpplint" },
-      html = { "prettier_d" },
-      javascript = { "eslint", "prettier_d" },
-      javascriptreact = { "eslint", "prettier_d" },
-      json = { "eslint", "fixjson" },
-      jsonc = { "eslint", "fixjson" },
-      lua = { "luacheck", "stylua" },
-      markdown = { "prettier_d" },
-      python = { "flake8", "black" },
-      sh = { "shellcheck", "shfmt" },
-      typescript = { "eslint", "prettier_d" },
-      typescriptreact = { "eslint", "prettier_d" },
-      yaml = { "yamllint" },
-    }
-
-    if configs[ft] then
-      efm_languages[ft] = {}
-      for _, tool in ipairs(configs[ft]) do
-        local ok, config = pcall(require, "efmls-configs." .. (tool:match("^%a+") == "efmls" and "linters" or "formatters") .. "." .. tool)
-        if ok then
-          table.insert(efm_languages[ft], config)
-        else
-          vim.notify("Failed to load " .. tool .. " for filetype " .. ft, vim.log.levels.WARN)
-        end
-      end
-    end
+    -- If you had previously tried to dynamically load configs, you can remove or adjust it here
+    -- Since we have a static configuration, we don't really need dynamic loading
   end
 
   local function setup_efm()
     if efm_config_loaded then return end
-
     lspconfig.efm.setup({
       filetypes = efm_filetypes,
       init_options = {
@@ -218,8 +242,9 @@ M.config = function()
       settings = {
         languages = efm_languages,
       },
+      on_attach = util.lsp.on_attach,
+      capabilities = capabilities,
     })
-
     efm_config_loaded = true
   end
 
