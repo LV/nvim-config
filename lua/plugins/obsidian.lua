@@ -41,6 +41,8 @@ return {
 
     notes_subdir = "Notes",
 
+    ui = { enable = false },
+
     workspaces = {
       {
         name = "vault",
