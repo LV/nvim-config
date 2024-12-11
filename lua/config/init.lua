@@ -9,7 +9,6 @@ require("config.autocmds")
 require("config.globals")
 require("config.indentation")
 require("config.keymaps")
-require("config.neovide")
 require("config.options")
 require("config.vault")
 
