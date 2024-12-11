@@ -46,7 +46,7 @@ return {
       { "<leader>o", group = "org" },
       { "<leader>od", group = "daily" },
       { "<leader>odd", "<cmd>ObsidianDailies<CR>", desc = "See Recent Dailies" },
-          -- NOTE: `<cmd>ObsidianDailies -2 1<CR>` Shows Dailies from 2 days ago until tomorrow
+          -- `<cmd>ObsidianDailies -2 1<CR>` Shows Dailies from 2 days ago until tomorrow
       { "<leader>odt", "<cmd>ObsidianToday<CR>", desc = "Open Today's Document" },
       { "<leader>of", "<cmd>ObsidianQuickSwitch<CR>", desc = "Find File in Vault" },
       { "<leader>og", "<cmd>ObsidianSearch<CR>", desc = "Ripgrep Vault" },
