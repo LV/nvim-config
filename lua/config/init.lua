@@ -11,6 +11,7 @@ require("config.indentation")
 require("config.keymaps")
 require("config.neovide")
 require("config.options")
+require("config.vault")
 
 local plugins = "plugins"
 
