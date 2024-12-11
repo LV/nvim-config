@@ -1,9 +1,3 @@
-local config = function()
-  require('obsidian').setup({
-    ui = { enable = false },
-  })
-end
-
 return {
   'MeanderingProgrammer/render-markdown.nvim',
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
@@ -12,6 +6,5 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {},
-  config = config,
   ft = { "markdown" },
 }
