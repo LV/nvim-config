@@ -135,6 +135,10 @@ M.config = function()
       end,
       cmd = { "tinymist" },
     },
+    zls = {
+      filetypes = { "zig" },
+      cmd = { "zls" },
+    },
   }
 
   -- Function to set up a server
