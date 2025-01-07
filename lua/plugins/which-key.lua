@@ -39,7 +39,7 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>gb", group = "blame" },
 
-      { "<leader>h", "<cmd>HopWord<CR>", desc = "Hop Word" },
+      { "<leader>h", "<cmd>HopChar1<CR>", desc = "Hop Word" },
 
       { "<leader>n", group = "notifications" },
 
