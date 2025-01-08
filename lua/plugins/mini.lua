@@ -1,3 +1,11 @@
+local diff = function()
+  require("mini.diff").setup({
+    view = {
+      style = "sign",
+    },
+  })
+end
+
 local icons = function()
   require("mini.icons").setup({
     style = "glyph",
@@ -34,6 +42,7 @@ return {
   "echasnovski/mini.nvim",
   version = "*",
   config = function()
+    diff()
     icons()
     indentscope()
     jump()
