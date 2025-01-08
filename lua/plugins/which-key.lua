@@ -41,8 +41,6 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>gb", group = "blame" },
 
-      { "<leader>h", "<cmd>HopChar1<CR>", desc = "Hop Word" },
-
       { "<leader>n", group = "notifications" },
 
       { "<leader>o", group = "org" },
@@ -61,8 +59,6 @@ return {
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
 
       { "<leader>r", group = "runner" },
-
-      { "<leader>s", "<cmd>Pendulum<CR>", desc = "Usage Statistics" },
 
       { "<leader>w", group = "window" },
       { "<leader>ws", "<cmd>split<CR>", desc = "Split Window Horizontally" },
