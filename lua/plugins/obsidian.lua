@@ -4,7 +4,7 @@ return {
   "epwalsh/obsidian.nvim",
   version = "*",  -- recommended, use latest release instead of latest commit
   lazy = true,
-  event = { "VimEnter" },  -- Load on launching
+  event = { "VimEnter" },  -- load on launching
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
@@ -20,8 +20,7 @@ return {
 
   opts = {
     attachments = {
-      -- Default folder to place images via `:ObsidianPasteImg`
-      img_folder = "assets",
+      img_folder = "assets",  -- default folder to place images via `:ObsidianPasteImg`
     },
 
     daily_notes = {
@@ -29,8 +28,7 @@ return {
       date_format = "%Y-%m-%d",
     },
 
-    -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
-    disable_frontmatter = true,
+    disable_frontmatter = true,  -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
 
     -- Optional, customize how note IDs are generated given an optional title.
     ---@param title string|?
@@ -41,7 +39,22 @@ return {
 
     notes_subdir = "Notes",
 
-    ui = { enable = false },
+    mappings = {}, -- disable default mappings
+
+    ui = {
+      enable = false,
+      checkboxes = {
+        -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+        [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+        ["x"] = { char = "", hl_group = "ObsidianDone" },
+        [">"] = { char = "", hl_group = "ObsidianRightArrow" },
+        ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+        ["!"] = { char = "", hl_group = "ObsidianImportant" },
+        -- Replace the above with this if you don't have a patched font:
+        -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+        -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+      }
+    },
 
     workspaces = {
       {
