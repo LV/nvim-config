@@ -144,7 +144,8 @@ return {
     words = { enabled = true },
   },
   keys = {
-    { "<leader>.",   function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>cn",  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
+    { "<leader>cN",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
     { "<leader>fd",  function() Snacks.bufdelete() end, desc = "Delete Buffer" },
     { "<leader>gB",  function() Snacks.gitbrowse() end, desc = "Git Browse" },
     { "<leader>gbl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
@@ -152,9 +153,7 @@ return {
     { "<leader>gl",  function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
     { "<leader>nd",  function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-    { "<leader>os",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+    { "<leader>s",   function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
     { "<leader>t",   function() Snacks.terminal() end, desc = "Toggle Terminal" },
-    { "<leader>cn",  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
-    { "<leader>cN",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
   },
 }
