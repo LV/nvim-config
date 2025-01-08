@@ -40,5 +40,4 @@ return {
     jump2d()
     statusline()
   end,
-
 }
