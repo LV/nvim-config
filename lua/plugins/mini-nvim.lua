@@ -18,6 +18,14 @@ local jump = function()
   require("mini.jump").setup()
 end
 
+local jump2d = function()
+  require("mini.jump2d").setup({
+    mappings = {
+      start_jumping = "", -- remove default binding
+    },
+  })
+end
+
 local statusline = function()
   require("mini.statusline").setup()
 end
@@ -29,6 +37,7 @@ return {
     icons()
     indentscope()
     jump()
+    jump2d()
     statusline()
   end,
 

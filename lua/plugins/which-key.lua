@@ -15,6 +15,8 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
 
+      { "<CR>", "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>", desc = "Hop to Char" },
+
       { "<leader>c", group = "code" },
 
       { "<leader>f", group = "file" },
