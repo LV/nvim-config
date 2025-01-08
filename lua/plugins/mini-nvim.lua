@@ -14,6 +14,10 @@ local indentscope = function()
   })
 end
 
+local jump = function()
+  require("mini.jump").setup()
+end
+
 local statusline = function()
   require("mini.statusline").setup()
 end
@@ -24,6 +28,7 @@ return {
   config = function()
     icons()
     indentscope()
+    jump()
     statusline()
   end,
 
