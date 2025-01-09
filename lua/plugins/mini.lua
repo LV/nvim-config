@@ -44,7 +44,7 @@ end
 
 return {
   "echasnovski/mini.nvim",
-  version = "*",
+  version = false,
   config = function()
     diff()
     files()
