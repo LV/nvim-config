@@ -38,6 +38,15 @@ local jump2d = function()
   })
 end
 
+local starter = function()
+  require("mini.starter").setup()
+  -- Ensure it launches at startup if no file is provided
+  if vim.fn.argc() == 0 then
+    vim.cmd("enew") -- Open a new empty buffer
+    require("mini.starter").open()
+  end
+end
+
 local statusline = function()
   require("mini.statusline").setup()
 end
@@ -52,6 +61,7 @@ return {
     indentscope()
     jump()
     jump2d()
+    starter()
     statusline()
   end,
 }
