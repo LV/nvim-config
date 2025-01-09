@@ -6,6 +6,10 @@ local diff = function()
   })
 end
 
+local files = function()
+  require("mini.files").setup()
+end
+
 local icons = function()
   require("mini.icons").setup({
     style = "glyph",
@@ -43,6 +47,7 @@ return {
   version = "*",
   config = function()
     diff()
+    files()
     icons()
     indentscope()
     jump()
