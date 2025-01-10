@@ -43,9 +43,10 @@ local starter = function()
     evaluate_single = true,
 
     items = {
+      { name = "Explorer", action = "Oil", section = "Actions" },
       { name = "Find", action = "Telescope find_files", section = "Actions" },
       { name = "Grep", action = "Telescope live_grep", section = "Actions" },
-      { name = "Explorer", action = "lua MiniFiles.open()", section = "Actions" },
+      { name = "New",  action = "enew", section = "Actions" },
       { name = "Quit", action = "q", section = "Actions" },
     },
   })
