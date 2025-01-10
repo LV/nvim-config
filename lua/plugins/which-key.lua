@@ -31,7 +31,6 @@ return {
           require("oil").open("~/nixos")
         end,
         desc = "Open Nixos Config" },
-      { "<leader>fe", "<cmd>lua MiniFiles.open()<CR>", desc = "File Explorer" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
       { "<leader>fv",
         function()
