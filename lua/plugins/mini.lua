@@ -8,8 +8,8 @@ local base16 = function()
       base04 = "#ABB2BF", -- Foreground
       base05 = "#10B1FE", -- Keywords
       base06 = "#F9C859", -- Strings
-      base07 = "#FF6480", -- Types
-      base08 = "#3FC56B", -- Methods
+      base07 = "#3FC56B", -- Types
+      base08 = "#FF6480", -- Methods
       base09 = "#9F7EFE", -- Constants
       base0A = "#7A82DA", -- Punctuation
       base0B = "#3691FF", -- Tags
@@ -20,7 +20,6 @@ local base16 = function()
     },
   })
 end
-
 local diff = function()
   require("mini.diff").setup({
     view = {
