@@ -1,36 +1,9 @@
-local base16 = function()
-  require('mini.base16').setup({
-    palette = {
-      base00 = "#282C34", -- Background
-      base01 = "#21242D", -- Float background
-      base02 = "#274670", -- Selection, Statusline metadata
-      base03 = "#636D83", -- Comments and Line Numbers; Statusline filepath
-      base04 = "#ABB2BF", -- Foreground
-      -- base05 = "#F9C859", -- Keywords; Lazygit main text; Statusline 'Normal mode'
-      base05 = "#a3bac3",
-      base06 = "#50ACAE", -- Strings
-      base07 = "#3691FF", -- Types
-      base08 = "#FF595E", -- Methods; Lazygit Removal
-      base09 = "#9F7EFE", -- Constants
-      base0A = "#7A82DA", -- Punctuation
-      base0B = "#8AC926", -- Tags; Lazygit Addition; Statusline 'V-Line mode'
-      base0C = "#FF78F8", -- Numbers; C++ variable type
-      base0D = "#FF936A", -- Attributes; Statusline 'Insert mode'
-      base0E = "#10B1FE", -- Labels
-      base0F = "#FF2E3F", -- Errors
-    },
-  })
-end
 local diff = function()
   require("mini.diff").setup({
     view = {
       style = "sign",
     },
   })
-end
-
-local files = function()
-  require("mini.files").setup()
 end
 
 local icons = function()
@@ -103,9 +76,7 @@ return {
   "echasnovski/mini.nvim",
   version = false,
   config = function()
-    base16()
     diff()
-    files()
     icons()
     indentscope()
     jump()
