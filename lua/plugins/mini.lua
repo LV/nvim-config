@@ -6,7 +6,7 @@ local base16 = function()
       base02 = "#636D83", -- Comments
       base03 = "#274670", -- Selection
       base04 = "#ABB2BF", -- Foreground
-      base05 = "#10B1FE", -- Keywords
+      base05 = "#50ACAE", -- Keywords
       base06 = "#F9C859", -- Strings
       base07 = "#3691FF", -- Types
       base08 = "#FF6480", -- Methods
@@ -15,7 +15,7 @@ local base16 = function()
       base0B = "#3FC56B", -- Tags
       base0C = "#FF78F8", -- Numbers
       base0D = "#FF936A", -- Attributes
-      base0E = "#50ACAE", -- Labels
+      base0E = "#10B1FE", -- Labels
       base0F = "#FF2E3F", -- Errors
     },
   })
