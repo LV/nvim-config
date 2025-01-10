@@ -1,3 +1,26 @@
+local base16 = function ()
+  require("mini.base16").setup({
+    palette = {
+      base00 = '#282C34', -- Default background
+      base01 = '#353b45', -- Lighter background
+      base02 = '#274670', -- Selection background
+      base03 = '#636D83', -- Comments
+      base04 = '#565c64', -- Dark foreground
+      base05 = '#ABB2BF', -- Default foreground
+      base06 = '#b6bdca', -- Light foreground
+      base07 = '#ffffff', -- Light background
+      base08 = '#FF6480', -- Variables (Red)
+      base09 = '#FF936A', -- Numbers (Orange)
+      base0A = '#F9C859', -- Classes (Yellow)
+      base0B = '#3FC56B', -- Strings (Green)
+      base0C = '#10B1FE', -- Support (Cyan)
+      base0D = '#3691FF', -- Functions (Blue)
+      base0E = '#9F7EFE', -- Keywords (Purple)
+      base0F = '#FF78F8', -- Deprecated (Pink)
+    }
+  })
+end
+
 local diff = function()
   require("mini.diff").setup({
     view = {
@@ -80,6 +103,7 @@ return {
   "echasnovski/mini.nvim",
   version = false,
   config = function()
+    base16()
     diff()
     files()
     icons()
