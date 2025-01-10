@@ -1,23 +1,23 @@
-local base16 = function ()
-  require("mini.base16").setup({
+local base16 = function()
+  require('mini.base16').setup({
     palette = {
-      base00 = '#282C34', -- Default background
-      base01 = '#353b45', -- Lighter background
-      base02 = '#274670', -- Selection background
-      base03 = '#636D83', -- Comments
-      base04 = '#565c64', -- Dark foreground
-      base05 = '#ABB2BF', -- Default foreground
-      base06 = '#b6bdca', -- Light foreground
-      base07 = '#ffffff', -- Light background
-      base08 = '#FF6480', -- Variables (Red)
-      base09 = '#FF936A', -- Numbers (Orange)
-      base0A = '#F9C859', -- Classes (Yellow)
-      base0B = '#3FC56B', -- Strings (Green)
-      base0C = '#10B1FE', -- Support (Cyan)
-      base0D = '#3691FF', -- Functions (Blue)
-      base0E = '#9F7EFE', -- Keywords (Purple)
-      base0F = '#FF78F8', -- Deprecated (Pink)
-    }
+      base00 = "#282C34", -- Background
+      base01 = "#21242D", -- Float background
+      base02 = "#636D83", -- Comments
+      base03 = "#274670", -- Selection
+      base04 = "#ABB2BF", -- Foreground
+      base05 = "#10B1FE", -- Keywords
+      base06 = "#F9C859", -- Strings
+      base07 = "#FF6480", -- Types
+      base08 = "#3FC56B", -- Methods
+      base09 = "#9F7EFE", -- Constants
+      base0A = "#7A82DA", -- Punctuation
+      base0B = "#3691FF", -- Tags
+      base0C = "#FF78F8", -- Numbers
+      base0D = "#FF936A", -- Attributes
+      base0E = "#50ACAE", -- Labels
+      base0F = "#FF2E3F", -- Errors
+    },
   })
 end
 
