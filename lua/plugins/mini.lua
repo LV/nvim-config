@@ -49,6 +49,9 @@ local starter = function()
       { name = "New",  action = "enew", section = "Actions" },
       { name = "Quit", action = "q", section = "Actions" },
     },
+
+    header = "",
+    footer = "",
   })
 
   -- Add an autocommand to check mappings in starter buffer
