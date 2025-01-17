@@ -139,6 +139,10 @@ M.config = function()
       filetypes = { "zig" },
       cmd = { "zls" },
     },
+    marksman = {
+      filetypes = { "markdown", "markdown.mdx" },
+      cmd = { "marksman", "server" },
+    },
   }
 
   -- Function to set up a server
