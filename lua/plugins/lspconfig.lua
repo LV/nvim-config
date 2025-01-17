@@ -26,23 +26,57 @@ M.config = function()
   end
 
   -- Define server configurations
+  -- This is where you add new configurations
   local server_configs = {
-    bashls = { filetypes = { "sh", "aliasrc" } },
-    clangd = {
-      -- Include `.h` here so clangd can handle them
-      filetypes = { "c", "cpp" },
-      cmd = { "clangd", "--offset-encoding=utf-16" },
+    basedpyright = {
+      cmd = { "basedpyright-langserver", "--stdio" },
+      filetypes = { "python" },
+      python = {
+        analysis = {
+          useLibraryCodeForTypes = true,
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          autoImportCompletions = true,
+        },
+      },
+      single_file_support = true,
     },
-    dockerls = { filetypes = { "dockerfile" } },
+
+    bashls = {
+      cmd = { "bash-language-server", "start" },
+      filetypes = { "bash", "sh", },
+      single_file_support = true,
+    },
+
+    clangd = {
+      cmd = { "clangd" },
+      filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+      single_file_support = true,
+    },
+
+    dockerls = {
+      cmd = { "docker-langserver", "--stdio" },
+      filetypes = { "dockerfile" },
+      single_file_support = true,
+    },
+
     emmet_ls = {
-      filetypes = {
-        "css", "html", "javascript", "javascriptreact", "less", "sass",
-        "scss", "svelte", "typescript", "typescriptreact", "vue",
+      cmd = { "emmet-ls", "--stdio" },
+      filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "htmlangular" },
+      single_file_support = true,
+    },
+
+    golangci_lint_ls = {
+      cmd = { "golangci-lint-langserver" },
+      filetypes = { "go", "gomod" },
+      init_options = {
+        command = { "golangci-lint", "run", "--out-format", "json" },
       },
     },
+
     gopls = {
-      filetypes = { "go", "gomod", "gowork", "gotmpl" },
       cmd = { "gopls" },
+      filetypes = { "go", "gomod", "gowork", "gotmpl" },
       settings = {
         gopls = {
           analyses = {
@@ -52,17 +86,56 @@ M.config = function()
           staticcheck = true,
         },
       },
+      single_file_support = true,
     },
-    golangci_lint_ls = {
-      cmd = { "golangci-lint-langserver" },
-      filetypes = { "go", "gomod" },
+
+    jsonls = {
+      cmd = { "vscode-json-language-server", "--stdio" },
+      filetypes = { "json", "jsonc" },
       init_options = {
-        command = { "golangci-lint", "run", "--out-format", "json" },
+        provideFormatter = true
       },
+      single_file_support = true,
     },
+
+    lua_ls = {
+      cmd = { "lua-language-server" },
+      filetypes = { "lua" },
+      log_level = 2,
+      settings = {
+        Lua = {
+          diagnostics = { globals = { "vim" } },
+          workspace = {
+            library = {
+              vim.fn.expand("$VIMRUNTIME/lua"),
+              vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+            },
+          },
+        },
+      },
+      single_file_support = true,
+    },
+
+    marksman = {
+      cmd = { "marksman", "server" },
+      filetypes = { "markdown", "markdown.mdx" },
+      single_file_support = true,
+    },
+
+    nixd = {
+      cmd = { "nixd" },
+      filetypes = { "nix" },
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern("flake.nix", ".git")(fname)
+          or lspconfig.util.find_git_ancestor(fname)
+          or lspconfig.util.path.dirname(fname)
+      end,
+      single_file_support = true,
+    },
+
     rust_analyzer = {
-      filetypes = { "rust" },
       cmd = { "rust-analyzer" },
+      filetypes = { "rust" },
       settings = {
         ["rust-analyzer"] = {
           cargo = { allFeatures = true },
@@ -75,52 +148,11 @@ M.config = function()
           or lspconfig.util.find_git_ancestor(fname)
           or vim.fn.getcwd()
       end,
-    },
-    jsonls = { filetypes = { "json", "jsonc" } },
-    lua_ls = {
-      filetypes = { "lua" },
-      settings = {
-        Lua = {
-          diagnostics = { globals = { "vim" } },
-          workspace = {
-            library = {
-              vim.fn.expand("$VIMRUNTIME/lua"),
-              vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
-            },
-          },
-        },
-      },
-    },
-    nixd = {
-      filetypes = { "nix" },
-      root_dir = function(fname)
-        return lspconfig.util.root_pattern("flake.nix", ".git")(fname)
-          or lspconfig.util.find_git_ancestor(fname)
-          or lspconfig.util.path.dirname(fname)
-      end,
-      cmd = { "nixd" },
       single_file_support = true,
     },
-    basedpyright = {
-      filetypes = { "python" },
-      python = {
-        analysis = {
-          useLibraryCodeForTypes = true,
-          autoSearchPaths = true,
-          diagnosticMode = "workspace",
-          autoImportCompletions = true,
-        },
-      },
-    },
-    ts_ls = {
-      filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-      commands = {
-        TypeScriptOrganizeImports = util.lsp.typescript_organise_imports,
-      },
-      settings = { typescript = { indentStyle = "space", indentSize = 2 } },
-      root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
-    },
+
     tinymist = {
+      cmd = { "tinymist" },
       filetypes = { "typst" },
       settings = {
         exportPdf = "onType",
@@ -133,15 +165,23 @@ M.config = function()
           or lspconfig.util.find_git_ancestor(fname)
           or vim.fn.getcwd()
       end,
-      cmd = { "tinymist" },
+      single_file_support = true,
     },
+
+    ts_ls = {
+      cmd = { "typescript-language-server", "--stdio" },
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+      commands = {
+        TypeScriptOrganizeImports = util.lsp.typescript_organise_imports,
+      },
+      settings = { typescript = { indentStyle = "space", indentSize = 2 } },
+      root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
+      single_file_support = true,
+    },
+
     zls = {
-      filetypes = { "zig" },
       cmd = { "zls" },
-    },
-    marksman = {
-      filetypes = { "markdown", "markdown.mdx" },
-      cmd = { "marksman", "server" },
+      filetypes = { "zig" },
     },
   }
 
