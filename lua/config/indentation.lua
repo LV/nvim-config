@@ -79,6 +79,12 @@ set_indentation_settings({
     tabstop = 2,
   },
 
+  sql = {
+    expandtab = true,
+    shiftwidth = 4,
+    tabstop = 4,
+  },
+
   typst = {
     expandtab = true,
     shiftwidth = 2,
