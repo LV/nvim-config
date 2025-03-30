@@ -18,6 +18,9 @@ return {
       { ".", "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>", desc = "Hop to Char" },
 
       { "<leader>c", group = "code" },
+      { "<leader>cl", group = "LSP" },
+      { "<leader>cli", "<cmd>LspInfo<CR>", desc = "Info" },
+      { "<leader>clm", "<cmd>Mason<CR>", desc = "Menu" },
 
       { "<leader>f", group = "file" },
       { "<leader>fc", group = "config" },
