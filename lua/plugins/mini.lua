@@ -28,6 +28,7 @@ end
 
 local jump2d = function()
   require("mini.jump2d").setup({
+    labels = "etovxqpdygfblzhckisuran",
     mappings = {
       start_jumping = "", -- remove default binding
     },
