@@ -58,6 +58,7 @@ return {
         end,
         desc = "Open Nixos Config" },
       { "<leader>fd",  function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+      { "<leader>fe", "<cmd>Oil<CR>", desc = "File Explorer" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
       { "<leader>fv",
         function()

@@ -20,9 +20,6 @@ return {
   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   lazy = true,
   event = "VimEnter",
-  keys = {
-    { "<leader>fe", "<cmd>Oil<CR>", desc = "File Explorer" }
-  },
   config = config,
 }
 
