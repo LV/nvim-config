@@ -51,14 +51,14 @@ return {
       { "<leader>cl", group = "LSP" },
       { "<leader>cli", "<cmd>LspInfo<CR>", desc = "Info" },
       { "<leader>clm", "<cmd>Mason<CR>", desc = "Menu" },
-      { "<leader>cN",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
-      { "<leader>cn",  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
+      { "<leader>cN", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+      { "<leader>cn", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
 
       { "<leader>f", group = "file" },
       { "<leader>fc", group = "config" },
       { "<leader>fcv", oil_open_path("~/.config/nvim"), desc = "Open Neovim Config" },
       { "<leader>fcx", oil_open_path("~/nixos"), desc = "Open NixOS Config" },
-      { "<leader>fd",  function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+      { "<leader>fd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>fe", "<cmd>Oil<CR>", desc = "File Explorer" },
       { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Ripgrep" },
@@ -70,17 +70,17 @@ return {
         desc = "Open Vault" },
 
       { "<leader>g", group = "git" },
-      { "<leader>gB",  function() Snacks.gitbrowse() end, desc = "Git Browse" },
+      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
       { "<leader>gb", group = "blame" },
       { "<leader>gbb", "<cmd>Git blame<CR>", desc = "Blame" },
       { "<leader>gbl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
       { "<leader>gd", "<cmd>Git diff<CR>", desc = "Diff" },
-      { "<leader>gg",  function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
-      { "<leader>gl",  function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
+      { "<leader>gg", function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
+      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
 
       { "<leader>n", group = "notifications" },
-      { "<leader>nd",  function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+      { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+      { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification History" },
 
       { "<leader>o", group = "org" },
       { "<leader>oa", "<cmd>Org agenda<CR>", desc = "agenda"},
@@ -100,9 +100,9 @@ return {
 
       { "<leader>r", group = "runner" },
 
-      { "<leader>s",   function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+      { "<leader>s", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 
-      { "<leader>t",   function() Snacks.terminal() end, desc = "Toggle Terminal" },
+      { "<leader>t", function() Snacks.terminal() end, desc = "Toggle Terminal" },
 
       { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undotree" },
 
