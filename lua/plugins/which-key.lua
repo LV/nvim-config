@@ -22,6 +22,14 @@ local lazygit_repo_from_cwd = function()
   end
 end
 
+---@param path string
+---@return fun(): nil
+local function oil_open_path(path)
+  return function()
+    require("oil").open(path)
+  end
+end
+
 return {
   "folke/which-key.nvim",
   dependencies = { "echasnovski/mini.nvim" },
@@ -47,16 +55,8 @@ return {
 
       { "<leader>f", group = "file" },
       { "<leader>fc", group = "config" },
-      { "<leader>fcv",
-        function()
-          require("oil").open("~/.config/nvim")
-        end,
-        desc = "Open Neovim Config" },
-      { "<leader>fcx",
-        function()
-          require("oil").open("~/nixos")
-        end,
-        desc = "Open Nixos Config" },
+      { "<leader>fcv", oil_open_path("~/.config/nvim"), desc = "Open Neovim Config" },
+      { "<leader>fcx", oil_open_path("~/nixos"), desc = "Open NixOS Config" },
       { "<leader>fd",  function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>fe", "<cmd>Oil<CR>", desc = "File Explorer" },
       { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files" },
