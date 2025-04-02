@@ -79,7 +79,8 @@ return {
       { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification History" },
 
       { "<leader>o", group = "org" },
-      { "<leader>oa", "<cmd>Org agenda<CR>", desc = "agenda"},
+      { "<leader>oa", "<cmd>Org agenda<CR>", desc = "Agenda"},
+      { "<leader>oc", "<cmd>Org capture<CR>", desc = "Capture"},
       { "<leader>od", group = "daily" },
       { "<leader>odd", "<cmd>ObsidianDailies<CR>", desc = "See Recent Dailies" },
           -- `<cmd>ObsidianDailies -2 1<CR>` Shows Dailies from 2 days ago until tomorrow
