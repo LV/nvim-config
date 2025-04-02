@@ -42,6 +42,8 @@ return {
       { "<leader>cl", group = "LSP" },
       { "<leader>cli", "<cmd>LspInfo<CR>", desc = "Info" },
       { "<leader>clm", "<cmd>Mason<CR>", desc = "Menu" },
+      { "<leader>cN",  function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+      { "<leader>cn",  function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
 
       { "<leader>f", group = "file" },
       { "<leader>fc", group = "config" },
@@ -55,6 +57,7 @@ return {
           require("oil").open("~/nixos")
         end,
         desc = "Open Nixos Config" },
+      { "<leader>fd",  function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
       { "<leader>fv",
         function()
@@ -63,12 +66,17 @@ return {
         desc = "Open Vault" },
 
       { "<leader>g", group = "git" },
+      { "<leader>gB",  function() Snacks.gitbrowse() end, desc = "Git Browse" },
       { "<leader>gb", group = "blame" },
       { "<leader>gbb", "<cmd>Git blame<CR>", desc = "Blame" },
+      { "<leader>gbl", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
       { "<leader>gd", "<cmd>Git diff<CR>", desc = "Diff" },
       { "<leader>gg",  function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
+      { "<leader>gl",  function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
 
       { "<leader>n", group = "notifications" },
+      { "<leader>nd",  function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+      { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
 
       { "<leader>o", group = "org" },
       { "<leader>oa", "<cmd>Org agenda<CR>", desc = "agenda"},
@@ -83,10 +91,14 @@ return {
       { "<leader>onf", CreateFleetingNote, desc = "New Fleeting Note" },
       { "<leader>onn", CreateNote, desc = "New Note" },
 
-      { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
       { "<leader>P", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
+      { "<leader>p", "<cmd>Lazy<CR>", desc = "Open NVim Packages (LazyVim)" },
 
       { "<leader>r", group = "runner" },
+
+      { "<leader>s",   function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+
+      { "<leader>t",   function() Snacks.terminal() end, desc = "Toggle Terminal" },
 
       { "<leader>w", group = "window" },
       { "<leader>ws", "<cmd>split<CR>", desc = "Split Window Horizontally" },
