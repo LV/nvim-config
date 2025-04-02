@@ -1,3 +1,4 @@
+---@return nil
 local config = function()
   -- And you can configure cmp even more, if you want to.
   local cmp = require('cmp')

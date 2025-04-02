@@ -2,6 +2,7 @@ require("config/vault")
 require("util/which-key")
 
 -- HELPER FUNCTIONS
+---@return nil
 local lazygit_repo_from_cwd = function()
   -- When opening lazygit, open repo in the directory of the current buffer.
   -- Rather than opening repo from directory where `nvim` was first invoked.

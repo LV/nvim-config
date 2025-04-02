@@ -1,3 +1,4 @@
+---@return nil
 local config = function()
   require("orgmode").setup({
     org_agenda_files = "~/Vault/**/*",

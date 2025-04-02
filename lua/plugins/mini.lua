@@ -1,3 +1,4 @@
+---@return nil
 local diff = function()
   require("mini.diff").setup({
     view = {
@@ -6,12 +7,14 @@ local diff = function()
   })
 end
 
+---@return nil
 local icons = function()
   require("mini.icons").setup({
     style = "glyph",
   })
 end
 
+---@return nil
 local indentscope = function()
   require("mini.indentscope").setup({
     draw = {
@@ -22,10 +25,12 @@ local indentscope = function()
   })
 end
 
+---@return nil
 local jump = function()
   require("mini.jump").setup()
 end
 
+---@return nil
 local jump2d = function()
   require("mini.jump2d").setup({
     labels = "etovxqpdygfblzhckisuran",
@@ -35,6 +40,7 @@ local jump2d = function()
   })
 end
 
+---@return nil
 local starter = function()
   -- Debug mappings
   vim.opt.timeout = true
@@ -73,6 +79,7 @@ local starter = function()
   end
 end
 
+---@return nil
 local statusline = function()
   require("mini.statusline").setup()
 end

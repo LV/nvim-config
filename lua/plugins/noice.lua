@@ -1,3 +1,4 @@
+---@return nil
 local config = function()
   require("noice").setup({
     lsp = {

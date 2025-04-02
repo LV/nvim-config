@@ -1,6 +1,7 @@
 local useTransparent = false
 
 if useTransparent then
+  ---@return nil
   local config = function()
     require("transparent").setup({
       -- table: default groups

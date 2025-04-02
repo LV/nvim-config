@@ -15,6 +15,7 @@ local ignore_patterns = {
   "node_modules",
 }
 
+---@return nil
 local config = function()
   local telescope = require("telescope")
   telescope.setup({
