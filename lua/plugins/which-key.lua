@@ -63,11 +63,7 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Ripgrep" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
-      { "<leader>fv",
-        function()
-          require("oil").open(VaultPath)
-        end,
-        desc = "Open Vault" },
+      { "<leader>fv", oil_open_path(VaultPath), desc = "Open Vault" },
 
       { "<leader>g", group = "git" },
       { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
