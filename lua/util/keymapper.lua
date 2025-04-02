@@ -9,8 +9,8 @@ local default_opts = {
   silent = true,
 }
 
---- @param opts (table|nil)
---- @return table
+---@param opts (table|nil)
+---@return table
 local get_opts = function(opts)
   local all_opts = opts
   if all_opts == nil then
@@ -22,8 +22,8 @@ local get_opts = function(opts)
   return all_opts
 end
 
---- @param vimmode (string|nil)
---- @return string
+---@param vimmode (string|nil)
+---@return string
 local get_mode = function(vimmode)
   local modeString = vim_modes[vimmode]
   if modeString == nil then
@@ -33,17 +33,17 @@ local get_mode = function(vimmode)
   end
 end
 
---- @param command (string)
---- @return string
+---@param command (string)
+---@return string
 local get_cmd_string = function(command)
   return [[<cmd>]] .. command .. [[<CR>]]
 end
 
---- @param keymaps string
---- @param command string
---- @param vimmode (string|nil)
---- @param options (table|nil)
---- @return nil
+---@param keymaps string
+---@param command string
+---@param vimmode (string|nil)
+---@param options (table|nil)
+---@return nil
 local mapvimkey = function(keymaps, command, vimmode, options)
   local mode = get_mode(vimmode)
   local lhs = keymaps
@@ -52,10 +52,10 @@ local mapvimkey = function(keymaps, command, vimmode, options)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
---- @param keymaps string
---- @param cmd (function|string)
---- @param desc (string|nil)
---- @return table
+---@param keymaps string
+---@param cmd (function|string)
+---@param desc (string|nil)
+---@return table
 local maplazykey = function(keymaps, cmd, desc)
   if type(cmd) ~= "function" then
     cmd = get_cmd_string(cmd)
