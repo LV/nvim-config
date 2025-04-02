@@ -21,6 +21,7 @@ local config = function()
       "toml",
       "yaml",
     },
+    ignore_install = { "org" }, -- as per `nvim-orgmode` instructions
     auto_install = true,
     highlight = {
       enable = true,
