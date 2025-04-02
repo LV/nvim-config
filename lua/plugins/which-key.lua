@@ -1,6 +1,27 @@
 require("config/vault")
 require("util/which-key")
 
+-- HELPER FUNCTIONS
+local lazygit_repo_from_cwd = function()
+  -- When opening lazygit, open repo in the directory of the current buffer.
+  -- Rather than opening repo from directory where `nvim` was first invoked.
+  local cwd
+  if vim.bo.filetype == "oil" then
+    local oil = require("oil")
+    cwd = oil.get_current_dir()
+  else
+    cwd = vim.fn.expand("%:p:h")
+  end
+
+  if cwd and vim.fn.isdirectory(cwd) == 1 then
+    -- Change directory to `cwd` before invoking Snacks.lazygit
+    vim.cmd("cd " .. cwd)
+    Snacks.lazygit()
+  else
+    vim.notify("Invalid directory for lazygit", vim.log.levels.ERROR)
+  end
+end
+
 return {
   "folke/which-key.nvim",
   dependencies = { "echasnovski/mini.nvim" },
@@ -45,6 +66,7 @@ return {
       { "<leader>gb", group = "blame" },
       { "<leader>gbb", "<cmd>Git blame<CR>", desc = "Blame" },
       { "<leader>gd", "<cmd>Git diff<CR>", desc = "Diff" },
+      { "<leader>gg",  function() lazygit_repo_from_cwd() end, desc = "LazyGit" },
 
       { "<leader>n", group = "notifications" },
 
