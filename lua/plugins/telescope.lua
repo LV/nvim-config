@@ -1,8 +1,3 @@
-local keys = {
-  { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files" },
-  { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Ripgrep" },
-}
-
 -- Patterns to ignore when searching
 local ignore_patterns = {
   ".cache",
@@ -63,6 +58,5 @@ return {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
-  keys = keys,
   config = config,
 }

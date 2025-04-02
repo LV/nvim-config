@@ -59,6 +59,8 @@ return {
         desc = "Open Nixos Config" },
       { "<leader>fd",  function() Snacks.bufdelete() end, desc = "Delete Buffer" },
       { "<leader>fe", "<cmd>Oil<CR>", desc = "File Explorer" },
+      { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy Find Files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Ripgrep" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search TODO" },
       { "<leader>fv",
         function()
