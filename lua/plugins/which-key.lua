@@ -100,6 +100,8 @@ return {
 
       { "<leader>t",   function() Snacks.terminal() end, desc = "Toggle Terminal" },
 
+      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Toggle Undotree" },
+
       { "<leader>w", group = "window" },
       { "<leader>ws", "<cmd>split<CR>", desc = "Split Window Horizontally" },
       { "<leader>wv", "<cmd>vsplit<CR>", desc = "Split Window Vertically" },
