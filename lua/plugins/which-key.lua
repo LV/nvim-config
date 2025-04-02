@@ -43,6 +43,8 @@ return {
 
       { "<leader>g", group = "git" },
       { "<leader>gb", group = "blame" },
+      { "<leader>gbb", "<cmd>Git blame<CR>", desc = "Blame" },
+      { "<leader>gd", "<cmd>Git diff<CR>", desc = "Diff" },
 
       { "<leader>n", group = "notifications" },
 
