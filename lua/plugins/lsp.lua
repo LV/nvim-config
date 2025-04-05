@@ -13,13 +13,14 @@ if useMason then
       cmd = {"Mason", "MasonInstall", "MasonUninstall", "MasonLog"},
       config = function()
         require("mason").setup({
+          log_level = vim.log.levels.DEBUG, -- 'DEBUG' (less verbose) or 'TRACE' (more verbose)
           ui = {
             icons = {
               package_installed = "✓",
               package_pending = "➜",
               package_uninstalled = "✗"
-            }
-          }
+            },
+          },
         })
       end
     },
